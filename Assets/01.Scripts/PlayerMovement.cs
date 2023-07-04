@@ -59,6 +59,32 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    #region Movement
+    private void Move()
+    {
+        if (_dir != Vector3.zero)
+        {
+            if (Mathf.Sign(transform.position.x) != Mathf.Sign(_dir.x) || Mathf.Sign(transform.position.z) != Mathf.Sign(_dir.z))
+            {
+                transform.Rotate(0, 1, 0);
+            }
+
+            transform.forward = Vector3.Lerp(transform.forward, _dir, rotateSpeed * Time.deltaTime);
+        }
+        _rigidbody.MovePosition(transform.position + _dir * moveSpeed * Time.deltaTime);
+    }
+
+    private void Jump()
+    {
+        Vector3 jumpVec = Vector3.up * jumpPower;
+        _rigidbody.AddForce(jumpVec, ForceMode.VelocityChange);
+    }
+
     private IEnumerator Dash()
     {
         canDash = false;
@@ -74,37 +100,12 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(dashCoolTime);
         canDash = true;
     }
+    #endregion
 
     private void CheckGround()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position + (Vector3.up * 0.2f), Vector3.down, out hit, checkGroundRayDistance, _layerMask))
-        {
-            isGround = true;
-        }
-        else
-        {
-            isGround = false;
-        }
-    }
-
-    private void Jump()
-    {
-        Vector3 jumpVec = Vector3.up * jumpPower;
-        _rigidbody.AddForce(jumpVec, ForceMode.VelocityChange);
-    }
-
-    private void FixedUpdate()
-    {
-        if(_dir != Vector3.zero)
-        {
-            if(Mathf.Sign(transform.position.x) !=  Mathf.Sign(_dir.x) || Mathf.Sign(transform.position.z) != Mathf.Sign(_dir.z))
-            {
-                transform.Rotate(0, 1, 0);
-            }
-
-            transform.forward = Vector3.Lerp(transform.forward, _dir, rotateSpeed * Time.deltaTime);
-        }
-        _rigidbody.MovePosition(transform.position + _dir * moveSpeed * Time.deltaTime);
+        if (Physics.Raycast(transform.position + (Vector3.up * 0.2f), Vector3.down, out hit, checkGroundRayDistance, _layerMask)) { isGround = true; }
+        else { isGround = true; }
     }
 }
