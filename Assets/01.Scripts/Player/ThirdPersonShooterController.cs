@@ -51,7 +51,6 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         }
 
-
         if (_starterAssetsInputs.aim)
         {
             _aimVirtualCamera.gameObject.SetActive(true);
@@ -63,12 +62,26 @@ public class ThirdPersonShooterController : MonoBehaviour
             Vector3 aimDirection = (worldTargetPos - transform.position).normalized;
              
             transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * rotateSpeed);
+
         }
         else
         {
             _aimVirtualCamera.gameObject.SetActive(false);
             _thirdPersonController.SetSensitivity(normalSensitivity);
             _thirdPersonController.SetRotateOnMove(true);
+        }
+
+        if(_starterAssetsInputs.shoot)
+        {
+            //¹Ù²Ù±â
+
+            transform.forward = Vector3.Lerp(transform.forward, mouseWorldPos, Time.deltaTime * rotateSpeed);
+
+            //Shoot
+        }
+        else
+        {
+
         }
 
         
