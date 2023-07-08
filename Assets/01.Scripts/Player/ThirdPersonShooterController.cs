@@ -53,7 +53,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             mouseWorldPos = hitInfo.point;
             test.transform.position = hitInfo.point;
-            hitPoint.position = hitInfo.point;
+            hitPoint.position = hitInfo.transform.position;
         }
 
         if (_starterAssetsInputs.aim)
