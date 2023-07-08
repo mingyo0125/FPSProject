@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 613433886817584985}
   - component: {fileID: 613433886817584984}
   - component: {fileID: 613433886817584987}
+  - component: {fileID: -3419308588779246058}
   m_Layer: 0
   m_Name: VFX_HitRed
   m_TagString: Untagged
@@ -4831,7 +4832,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 33ba0c53d763ce449a6c35c00dca0b9a, type: 2}
+  - {fileID: 2100000, guid: b473b81806207db4298b4e0eedd4e37c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4882,3 +4883,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-3419308588779246058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613433886817584986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77c06115e93123347bc97f03dddec03a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

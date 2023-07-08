@@ -5,6 +5,7 @@ using Cinemachine;
 using StarterAssets;
 using UnityEngine.InputSystem;
 using System;
+using UnityEditor.Rendering;
 
 public class ThirdPersonShooterController : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField]
     private float rotateSpeed;
 
+    private Transform hitPoint;
+
 
     private void Awake()
     {
@@ -45,14 +48,12 @@ public class ThirdPersonShooterController : MonoBehaviour
         Vector3 mouseWorldPos = Vector3.zero;
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
+
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 999f, _aimlayerMask))
         {
             mouseWorldPos = hitInfo.point;
             test.transform.position = hitInfo.point;
-        }
-        else
-        {
-
+            hitPoint.position = hitInfo.point;
         }
 
         if (_starterAssetsInputs.aim)
@@ -79,18 +80,28 @@ public class ThirdPersonShooterController : MonoBehaviour
             _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
         }
 
-        if(_starterAssetsInputs.shoot && !_starterAssetsInputs.aim)
+        if(_starterAssetsInputs.shoot)
         {
-            //¹Ù²Ù±â
-
-            transform.forward = Vector3.Lerp(transform.forward, mouseWorldPos, Time.deltaTime * rotateSpeed);
-
-            //Shoot
+            if(hitPoint != null)
+            {
+                //hit something
+                if (hitPoint.gameObject.GetComponent<BulletTartget>() != null)
+                {
+                    Debug.Log("das");
+                    VFX hitVFX = PoolManager.Instance.Pop("VFX_HitGreen") as VFX;
+                    hitVFX.transform.position = hitPoint.position;
+                    hitVFX.transform.rotation = Quaternion.identity;
+                }
+                else
+                {
+                    Debug.Log(hitPoint.gameObject.name);
+                    VFX hitVFX = PoolManager.Instance.Pop("VFX_HitRed") as VFX;
+                    hitVFX.transform.position = hitPoint.position;
+                    hitVFX.transform.rotation = Quaternion.identity;
+                }
+            }
         }
-        else
-        {
-
-        }
+        
 
         
     }
