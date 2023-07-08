@@ -1548,6 +1548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensity: 0.1
   speed: 3
+  originalPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1857893734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2277,7 +2278,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4416926083347132227}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 027f00c86c565a44f865fc7c749b99e5, type: 3}
+  m_Avatar: {fileID: 9000000, guid: c03ed74817bca3b4e826f8c24f1f9a9a, type: 3}
   m_Controller: {fileID: 9100000, guid: 40db3173a05ae3242b1c182a09b0a183, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
