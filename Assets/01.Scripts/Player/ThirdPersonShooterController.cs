@@ -53,7 +53,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             mouseWorldPos = hitInfo.point;
             test.transform.position = hitInfo.point;
-            hitPoint.position = hitInfo.transform.position;
+            hitPoint = hitInfo.transform;
         }
 
         if (_starterAssetsInputs.aim)
@@ -89,14 +89,14 @@ public class ThirdPersonShooterController : MonoBehaviour
                 {
                     Debug.Log("das");
                     VFX hitVFX = PoolManager.Instance.Pop("VFX_HitGreen") as VFX;
-                    hitVFX.transform.position = hitPoint.position;
+                    hitVFX.transform.position = test.transform.position;
                     hitVFX.transform.rotation = Quaternion.identity;
                 }
                 else
                 {
                     Debug.Log(hitPoint.gameObject.name);
                     VFX hitVFX = PoolManager.Instance.Pop("VFX_HitRed") as VFX;
-                    hitVFX.transform.position = hitPoint.position;
+                    hitVFX.transform.position = test.transform.position;
                     hitVFX.transform.rotation = Quaternion.identity;
                 }
             }
