@@ -49,6 +49,7 @@ public class ThirdPersonShooterController : MonoBehaviour
         Vector2 screenCenterPoint = new Vector2(Screen.width / 2, Screen.height / 2);
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
 
+
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 999f, _aimlayerMask))
         {
             mouseWorldPos = hitInfo.point;
@@ -87,14 +88,12 @@ public class ThirdPersonShooterController : MonoBehaviour
                 //hit something
                 if (hitPoint.gameObject.GetComponent<BulletTartget>() != null)
                 {
-                    Debug.Log("das");
                     VFX hitVFX = PoolManager.Instance.Pop("VFX_HitGreen") as VFX;
                     hitVFX.transform.position = test.transform.position;
                     hitVFX.transform.rotation = Quaternion.identity;
                 }
                 else
                 {
-                    Debug.Log(hitPoint.gameObject.name);
                     VFX hitVFX = PoolManager.Instance.Pop("VFX_HitRed") as VFX;
                     hitVFX.transform.position = test.transform.position;
                     hitVFX.transform.rotation = Quaternion.identity;

@@ -1393,7 +1393,6 @@ MonoBehaviour:
   normalSensitivity: 1
   aimSensitivity: 0.5
   rotateSpeed: 10
-  hitPoint: {fileID: 3893294199639930361}
 --- !u!1 &1764214107
 GameObject:
   m_ObjectHideFlags: 0
