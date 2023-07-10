@@ -59,7 +59,6 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         if (_starterAssetsInputs.aim)
         {
-
             _aimVirtualCamera.gameObject.SetActive(true);
             _thirdPersonController.SetSensitivity(aimSensitivity);
             _thirdPersonController.SetRotateOnMove(false);
@@ -77,7 +76,6 @@ public class ThirdPersonShooterController : MonoBehaviour
         }
         else
         {
-
             _aimVirtualCamera.gameObject.SetActive(false);
             _thirdPersonController.SetSensitivity(normalSensitivity);
             _thirdPersonController.SetRotateOnMove(true);
