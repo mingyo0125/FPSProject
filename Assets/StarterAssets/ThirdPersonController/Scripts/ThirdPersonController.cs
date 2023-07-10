@@ -98,6 +98,8 @@ namespace StarterAssets
         private int _animIDJump;
         private int _animIDFreeFall;
         private int _animIDMotionSpeed;
+        private int _movementXHash; //Plus
+        private int _movementZHash; //Plus
 
 #if ENABLE_INPUT_SYSTEM 
         private PlayerInput _playerInput;
@@ -112,6 +114,11 @@ namespace StarterAssets
         private bool _hasAnimator;
 
         private bool rotatateOnMove = true; //Plus
+
+        
+
+        private float _movementX; //Plus
+        private float _movementZ; //Plus
 
         private bool IsCurrentDeviceMouse
         {
@@ -176,7 +183,10 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
-        }
+
+            _movementXHash = Animator.StringToHash("MovementX"); //Plus
+            _movementZHash = Animator.StringToHash("MovementZ"); //Plus
+    }
 
         private void GroundedCheck()
         {
@@ -216,6 +226,9 @@ namespace StarterAssets
 
         private void Move()
         {
+            _movementX =  _controller.velocity.x;
+
+
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
@@ -284,6 +297,14 @@ namespace StarterAssets
             {
                 _animator.SetFloat(_animIDSpeed, _animationBlend);
                 _animator.SetFloat(_animIDMotionSpeed, inputMagnitude);
+
+                _animator.SetFloat(_movementXHash, _movementX); //Plus
+
+                float targetMovementZ = _controller.velocity.z;
+
+                _movementZ = Mathf.Lerp(_movementZ, targetMovementZ, Time.deltaTime * 5f);
+
+                _animator.SetFloat(_movementZHash, _movementZ); //Plus
             }
         }
 
