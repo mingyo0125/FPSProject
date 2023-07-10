@@ -64,7 +64,9 @@ public class ThirdPersonShooterController : MonoBehaviour
             _thirdPersonController.SetSensitivity(aimSensitivity);
             _thirdPersonController.SetRotateOnMove(false);
 
+
             _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 1f, Time.deltaTime * 10f));
+
 
             Vector3 worldTargetPos = mouseWorldPos;
             worldTargetPos.y = transform.position.y;
@@ -80,10 +82,12 @@ public class ThirdPersonShooterController : MonoBehaviour
             _thirdPersonController.SetSensitivity(normalSensitivity);
             _thirdPersonController.SetRotateOnMove(true);
 
+
             _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 0f, Time.deltaTime * 10f));
+
         }
 
-        if(_starterAssetsInputs.shoot)
+        if (_starterAssetsInputs.shoot)
         {
             if(hitPoint != null)
             {
