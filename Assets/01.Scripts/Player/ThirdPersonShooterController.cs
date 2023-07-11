@@ -28,6 +28,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField]
     private float rotateSpeed;
 
+
     private Transform hitPoint;
 
 
@@ -93,6 +94,9 @@ public class ThirdPersonShooterController : MonoBehaviour
         {
             if(hitPoint != null)
             {
+                _animator.SetTrigger("FireTrigger");
+                Debug.Log("Shoot");
+
                 //hit something
                 if (hitPoint.gameObject.GetComponent<BulletTartget>() != null)
                 {
@@ -107,6 +111,8 @@ public class ThirdPersonShooterController : MonoBehaviour
                     hitVFX.transform.rotation = Quaternion.identity;
                 }
             }
+
+            _starterAssetsInputs.shoot = false;
         }
         
 
