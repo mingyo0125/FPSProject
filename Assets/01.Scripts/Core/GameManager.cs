@@ -7,6 +7,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     PoolingListSO _poolingListSO;
 
+    private Transform _playerTrm;
+    public Transform PlayerTrm
+    {
+        get
+        {
+            if (_playerTrm == null)
+            {
+                _playerTrm = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+            return _playerTrm;
+        }
+    }
+
     private void Awake()
     {
         if (Instance != null)
@@ -23,5 +36,6 @@ public class GameManager : MonoBehaviour
 
         _poolingListSO.List.ForEach(p => PoolManager.Instance.CreatePool(p.prefab, p.poolCount)); //리스트에 있는 모든
     }
+
 
 }
