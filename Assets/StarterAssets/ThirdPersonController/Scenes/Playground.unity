@@ -1249,6 +1249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fabcf2e8cfe3544fb97495e829e51ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chaseRange: 10
+  attackRange: 3
 --- !u!1001 &1221041499
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2066,6 +2068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db99a96a100ccd47a51fbeed4b73a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chaseRange: 10
 --- !u!1 &1799570362
 GameObject:
   m_ObjectHideFlags: 0
