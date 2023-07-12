@@ -26,7 +26,7 @@ public class CommonAIState : MonoBehaviour, IState
         _transitions = new List<AITransition>();
         GetComponentsInChildren<AITransition>(_transitions);
 
-        _transitions
+        _transitions.ForEach(t => t.SetUp(agentRoot));
     }
 
     public virtual bool UpdateState()

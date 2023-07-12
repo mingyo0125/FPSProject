@@ -19,6 +19,6 @@ public class EnemyController : MonoBehaviour
         transform.Find("AI").GetComponentsInChildren<CommonAIState>(states);
 
         //각 state에 대한 셋업
-        states.ForEach(s => s.SetUp(transform));
+        states.ForEach(s => s.SetUp(transform)); //state -> transitions -> Decision 순서롤 셋업을 해준다.
     }
 }

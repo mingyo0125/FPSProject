@@ -9,9 +9,9 @@ public class AIDecision : MonoBehaviour
 
     public bool IsReverse = false;
 
-    public virtual void SetUp(Transform parentRoot)
+    public virtual void SetUp(Transform parentRoot) //state -> transitions -> Decision 순서롤 셋업을 해준다.
     {
         _enemyController = parentRoot.GetComponent<EnemyController>();
-        _aiActionData = parentRoot.Find("AI").GetComponent<AIActionData>();
+        _aiActionData = parentRoot.Find("AI").GetComponent<AIActionData>(); 
     }
 }

@@ -11,6 +11,6 @@ public class AITransition : MonoBehaviour
         _aiDecisions = new List<AIDecision>();
         GetComponents<AIDecision>(_aiDecisions);
 
-        _aiDecisions.ForEach(d => d.SetUp(parentRoot));
+        _aiDecisions.ForEach(d => d.SetUp(parentRoot)); //state -> transitions -> Decision 순서롤 셋업을 해준다.
     }
 }
