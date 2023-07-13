@@ -9,5 +9,6 @@ public class SpiderDataSO : ScriptableObject
     public float MoveSpeed;
     public float RotateSpeed;
     public int AtkDamage;
+    public int MotionDelay;
     public float AtkCoolTime; //공격 쿨타임
 }

@@ -16,4 +16,5 @@ MonoBehaviour:
   MoveSpeed: 3
   RotateSpeed: 0
   AtkDamage: 0
+  MotionDelay: 3
   AtkCoolTime: 0

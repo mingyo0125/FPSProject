@@ -21,7 +21,7 @@ public class NavAgentMovement : MonoBehaviour
 
     public bool CheckIsArrived()
     {
-        if (_navMeshAgent.pathPending == false && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance) { return true; }
+        if (_navMeshAgent.pathPending == false && _navMeshAgent.remainingDistance <= _navMeshAgent.stoppingDistance) { Debug.Log("Arrived"); return true; }
         else { return false; }
     }
 
