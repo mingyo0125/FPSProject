@@ -54,7 +54,7 @@ public class AttackAIState : CommonAIState
 
     public override bool UpdateState()
     {
-        if (base.UpdateState()) { return true; }
+        //if (base.UpdateState()) { return true; }
 
         if(_aiActionData.IsAttacking == false && isActive)
         {
@@ -62,7 +62,7 @@ public class AttackAIState : CommonAIState
             _aiActionData.IsAttacking = true;
         }
 
-        return false;
+        return base.UpdateState();
 
     }
 }
