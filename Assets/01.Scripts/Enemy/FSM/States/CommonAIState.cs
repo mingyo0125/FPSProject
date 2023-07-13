@@ -2,21 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommonAIState : MonoBehaviour, IState
+public abstract class CommonAIState : MonoBehaviour, IState
 {
     protected List<AITransition> _transitions;
+
     protected EnemyController _enemyController;
     protected AIActionData _aiActionData;
 
-    public virtual void OnEnterState()
-    {
-        throw new System.NotImplementedException();
-    }
+    public abstract void OnEnterState();
 
-    public virtual void OnExitState()
-    {
-        throw new System.NotImplementedException();
-    }
+    public abstract void OnExitState();
 
     public virtual void SetUp(Transform agentRoot)
     {
@@ -31,6 +26,14 @@ public class CommonAIState : MonoBehaviour, IState
 
     public virtual bool UpdateState()
     {
-        throw new System.NotImplementedException();
+        foreach(AITransition transition in _transitions)
+        {
+            if(transition.CheckDecisions())
+            {
+                _enemyController.ChangeState(transition.NextState);
+                return true;
+            }
+        }
+        return false;
     }
 }

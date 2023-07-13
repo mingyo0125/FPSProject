@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIDecision : MonoBehaviour
+public abstract class AIDecision : MonoBehaviour
 {
     protected AIActionData _aiActionData;
     protected EnemyController _enemyController;
@@ -14,4 +14,6 @@ public class AIDecision : MonoBehaviour
         _enemyController = parentRoot.GetComponent<EnemyController>();
         _aiActionData = parentRoot.Find("AI").GetComponent<AIActionData>(); 
     }
+
+    public abstract bool MakeDecision();
 }

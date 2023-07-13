@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackAIState : MonoBehaviour
+public class AttackAIState : CommonAIState
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void OnEnterState()
     {
-        
+        Debug.Log("AttackStateEnter");
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void OnExitState()
     {
-        
+        Debug.Log("AttackStateExit");
+    }
+
+    public override bool UpdateState()
+    {
+        return base.UpdateState();
     }
 }

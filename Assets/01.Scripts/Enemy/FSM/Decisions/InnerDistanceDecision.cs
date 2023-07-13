@@ -2,17 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InnerDistanceDecision : MonoBehaviour
+public class InnerDistanceDecision : AIDecision
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private float _distance = 5f;
+
+    public override bool MakeDecision()
     {
-        
+        if (_enemyController.TargetTrm == null) { return true; } //안되면 true로 수정
+
+        float distacne = Vector3.Distance(_enemyController.TargetTrm.position, transform.position);
+
+        if(distacne <= _distance)
+        {
+            _aiActionData.LastSpotPoint = _enemyController.TargetTrm.position;
+            _aiActionData.TargetSpotted = true;
+        }
+        else
+        {
+            _aiActionData.TargetSpotted = false;
+        }
+
+        return _aiActionData.TargetSpotted;
     }
 
-    // Update is called once per frame
-    void Update()
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
     {
-        
+        if (UnityEditor.Selection.activeObject == gameObject)
+        {
+            Color old = Gizmos.color;
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, _distance);
+            Gizmos.color = old;
+        }
     }
+#endif
+
 }
