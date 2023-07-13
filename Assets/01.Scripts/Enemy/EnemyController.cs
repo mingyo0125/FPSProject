@@ -18,6 +18,9 @@ public class EnemyController : PoolableMono
 
     private NavAgentMovement _navMeshAgent;
     public NavAgentMovement NavMeshAgent => _navMeshAgent;
+    
+    private AgentAnimator _agentAnimator;
+    public AgentAnimator AgentAnimator => _agentAnimator;
 
     private AIActionData _actionData;
 
@@ -39,6 +42,7 @@ public class EnemyController : PoolableMono
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavAgentMovement>();
+        _agentAnimator = transform.Find("Visual").GetComponent<AgentAnimator>();
 
         List<CommonAIState> states = new List<CommonAIState>();
         transform.Find("AI").GetComponentsInChildren<CommonAIState>(states);

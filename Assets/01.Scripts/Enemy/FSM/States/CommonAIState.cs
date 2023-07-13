@@ -6,8 +6,9 @@ public abstract class CommonAIState : MonoBehaviour, IState
 {
     protected List<AITransition> _transitions;
 
-    protected EnemyController _enemyController;
     protected AIActionData _aiActionData;
+
+    protected EnemyController _enemyController;
 
     public abstract void OnEnterState();
 
