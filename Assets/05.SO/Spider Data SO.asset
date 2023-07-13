@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340526023c06da846893fc170735f69c, type: 3}
   m_Name: Spider Data SO
   m_EditorClassIdentifier: 
-  MaxHP: 10
+  MaxHP: 40
   MoveSpeed: 3
-  RotateSpeed: 0
-  AtkDamage: 0
-  MotionDelay: 3
+  RotateSpeed: 360
+  AtkDamage: 5
+  MotionDelay: 2
   AtkCoolTime: 0

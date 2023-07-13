@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class AttackAIState : CommonAIState
 {
-    SpiderDataSO _spiderDataSO;
-
+    protected Vector3 _targetVec;
     protected bool isActive = false;
+
+    private float _lastAtkTime;
 
     public override void SetUp(Transform agentRoot)
     {
         base.SetUp(agentRoot);
-        _spiderDataSO = _enemyController.SpiderDataSO;
+
     }
 
     public override void OnEnterState()
@@ -22,12 +23,28 @@ public class AttackAIState : CommonAIState
         _enemyController.AgentAnimator.OnAnimationEndTrigger += AttackAnimationEndHandle;
         isActive = true;
 
-        Debug.Log("AttackStateEnter");
+    }
+
+    public override void OnExitState()
+    {
+        Debug.Log("AttackStateExit");
+
+        _enemyController.AgentAnimator.OnAnimationEvenTrigger -= AttackCollisionHandle;
+        _enemyController.AgentAnimator.OnAnimationEndTrigger -= AttackAnimationEndHandle;
+
+        _enemyController.AgentAnimator.SetStackAttack(false);
+
+        _aiActionData.IsAttacking = false;
+        isActive = false;
+
     }
 
     private void AttackAnimationEndHandle()
     {
-        StartCoroutine(DelayCoroutine(() =>  _aiActionData.IsAttacking = false, _spiderDataSO.MotionDelay));
+        _enemyController.AgentAnimator.SetStackAttack(false);
+        _lastAtkTime = Time.time;
+
+        StartCoroutine(DelayCoroutine(() =>  _aiActionData.IsAttacking = false, _enemyController.SpiderDataSO.MotionDelay));
     }
 
     private IEnumerator DelayCoroutine(Action Callback, float time)
@@ -41,28 +58,25 @@ public class AttackAIState : CommonAIState
         Debug.Log("Attack");
     }
 
-    public override void OnExitState()
+    private void SetTarget()
     {
-        Debug.Log("AttackStateExit");
-
-        _enemyController.AgentAnimator.OnAnimationEvenTrigger -= AttackCollisionHandle;
-        _enemyController.AgentAnimator.OnAnimationEndTrigger -= AttackAnimationEndHandle;
-
-        isActive = false;
-
+        _targetVec = _enemyController.TargetTrm.position - transform.position;
+        _targetVec.y = 0;
     }
 
     public override bool UpdateState()
     {
-        //if (base.UpdateState()) { return true; }
 
-        if(_aiActionData.IsAttacking == false && isActive)
+        if (base.UpdateState()) { return true; }
+
+        if (_aiActionData.IsAttacking == false && isActive)
         {
-            _enemyController.AgentAnimator.SetStackAttack();
+            _enemyController.AgentAnimator.SetStackAttack(true);
             _aiActionData.IsAttacking = true;
         }
 
-        return base.UpdateState();
+        return false;
+
 
     }
 }

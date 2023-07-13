@@ -6,8 +6,8 @@ public class AttackEndDecision : AIDecision
 {
     public override bool MakeDecision()
     {
-        throw new System.NotImplementedException();
+        return _aiActionData.IsAttacking == false;
     }
 
-    
+
 }

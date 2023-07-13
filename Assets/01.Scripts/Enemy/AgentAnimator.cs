@@ -15,9 +15,10 @@ public class AgentAnimator : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    public void SetStackAttack()
+    public void SetStackAttack(bool value)
     {
-        _animator.SetTrigger(stackAttackAniHash);
+        if (value) { _animator.SetTrigger(stackAttackAniHash); }
+        else { _animator.ResetTrigger(stackAttackAniHash); }
     }
 
     #region 애니메이션 Action
