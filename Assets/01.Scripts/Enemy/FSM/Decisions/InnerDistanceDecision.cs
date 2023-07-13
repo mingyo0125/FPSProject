@@ -9,7 +9,7 @@ public class InnerDistanceDecision : AIDecision
 
     public override bool MakeDecision()
     {
-        if (_enemyController.TargetTrm == null) { return true; } //안되면 true로 수정
+        if (_enemyController.TargetTrm == null) { return false; } //안되면 true로 수정
 
         float distacne = Vector3.Distance(_enemyController.TargetTrm.position, transform.position);
 

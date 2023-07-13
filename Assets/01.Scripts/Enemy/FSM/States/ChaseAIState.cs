@@ -21,6 +21,9 @@ public class ChaseAIState : CommonAIState
 
     public override bool UpdateState()
     {
+        _enemyController.NavMeshAgent.MoveToTarget(_aiActionData.LastSpotPoint);
+        _aiActionData.IsArrived = _enemyController.NavMeshAgent.CheckIsArrived();
+
         return base.UpdateState();
     }
 }

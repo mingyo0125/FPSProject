@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyController : PoolableMono
 {
@@ -8,8 +9,15 @@ public class EnemyController : PoolableMono
     private CommonAIState _currentState;
     public CommonAIState CurrentState => _currentState;
 
+    [SerializeField]
+    private SpiderDataSO _spiderDataSO;
+    public SpiderDataSO SpiderDataSO => _spiderDataSO;
+
     private Transform _targetTrm;
     public Transform TargetTrm => _targetTrm;
+
+    private NavAgentMovement _navMeshAgent;
+    public NavAgentMovement NavMeshAgent => _navMeshAgent;
 
     private AIActionData _actionData;
 
@@ -18,6 +26,8 @@ public class EnemyController : PoolableMono
 
     private void Start()
     {
+        _navMeshAgent.SetInitData(_spiderDataSO.MoveSpeed);
+
         _targetTrm = GameManager.Instance.PlayerTrm; //범위는 오버랩 스피어로 나중에 지정
     }
 
@@ -28,6 +38,8 @@ public class EnemyController : PoolableMono
 
     private void Awake()
     {
+        _navMeshAgent = GetComponent<NavAgentMovement>();
+
         List<CommonAIState> states = new List<CommonAIState>();
         transform.Find("AI").GetComponentsInChildren<CommonAIState>(states);
 
