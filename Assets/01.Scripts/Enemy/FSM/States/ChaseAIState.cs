@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class ChaseAIState : CommonAIState
 {
+    public override void SetUp(Transform agentRoot)
+    {
+        base.SetUp(agentRoot);
+    }
+
     public override void OnEnterState()
     {
         Debug.Log("ChaseStateEnter");
+
+        _enemyController.AgentAnimator.SetWalkForward(true);
     }
 
     public override void OnExitState()
     {
+        _enemyController.AgentAnimator.SetWalkForward(false);
         Debug.Log("ChaseStateExit");
     }
 

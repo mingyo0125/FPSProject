@@ -9,6 +9,7 @@ public class AgentAnimator : MonoBehaviour
     public Animator Animator => _animator;
 
     private readonly int stackAttackAniHash = Animator.StringToHash("Stab Attack");
+    private readonly int walkForwardAniHash = Animator.StringToHash("Walk Forward");
 
     private void Awake()
     {
@@ -19,6 +20,11 @@ public class AgentAnimator : MonoBehaviour
     {
         if (value) { _animator.SetTrigger(stackAttackAniHash); }
         else { _animator.ResetTrigger(stackAttackAniHash); }
+    }
+
+    public void SetWalkForward(bool value)
+    {
+        _animator.SetBool(walkForwardAniHash, value);
     }
 
     #region 애니메이션 Action

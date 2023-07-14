@@ -13,7 +13,6 @@ public class AttackAIState : CommonAIState
     public override void SetUp(Transform agentRoot)
     {
         base.SetUp(agentRoot);
-
     }
 
     public override void OnEnterState()
