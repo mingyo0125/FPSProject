@@ -1,6 +1,7 @@
 ﻿ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XInput;
 #endif
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
@@ -115,10 +116,9 @@ namespace StarterAssets
 
         private bool rotatateOnMove = true; //Plus
 
-        
-
         private float _movementX; //Plus
         private float _movementZ; //Plus
+        private readonly float _movementLerpSpeed = 15f; //Plus
 
         private bool IsCurrentDeviceMouse
         {
@@ -226,8 +226,8 @@ namespace StarterAssets
 
         private void Move()
         {
-            _movementX =  _controller.velocity.x;
-
+            _movementZ = Mathf.MoveTowards(_movementZ, _input.VerticalMovement, _movementLerpSpeed * Time.deltaTime);
+            _movementX = Mathf.MoveTowards(_movementX, _input.HorizontalMovement, _movementLerpSpeed * Time.deltaTime);
 
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
@@ -300,11 +300,9 @@ namespace StarterAssets
 
                 _animator.SetFloat(_movementXHash, _movementX); //Plus
 
-                float targetMovementZ = _controller.velocity.z;
-
-                _movementZ = Mathf.Lerp(_movementZ, targetMovementZ, Time.deltaTime * 5f);
-
                 _animator.SetFloat(_movementZHash, _movementZ); //Plus
+                Debug.Log($"X: {_movementX}");
+                Debug.Log($"Z: {_movementZ}");
             }
         }
 

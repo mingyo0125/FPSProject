@@ -22,8 +22,11 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+		public float VerticalMovement;
+		public float HorizontalMovement;
+
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
@@ -57,10 +60,13 @@ namespace StarterAssets
         }
 #endif
 
-        public void MoveInput(Vector2 newMoveDirection)
+        public void MoveInput(Vector3 newMoveDirection)
 		{
-			move = newMoveDirection;
-		} 
+			move = (Vector2)newMoveDirection;
+			VerticalMovement = newMoveDirection.x;
+			HorizontalMovement = newMoveDirection.z;
+
+        } 
 
 		public void LookInput(Vector2 newLookDirection)
 		{

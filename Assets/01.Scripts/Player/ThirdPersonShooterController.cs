@@ -118,4 +118,9 @@ public class ThirdPersonShooterController : MonoBehaviour
 
         
     }
+
+    public void PlayFootstepSound()
+    {
+        Debug.Log("FootstepSound");
+    }
 }
