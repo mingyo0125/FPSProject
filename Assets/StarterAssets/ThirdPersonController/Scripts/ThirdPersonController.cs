@@ -301,8 +301,7 @@ namespace StarterAssets
                 _animator.SetFloat(_movementXHash, _movementX); //Plus
 
                 _animator.SetFloat(_movementZHash, _movementZ); //Plus
-                Debug.Log($"X: {_movementX}");
-                Debug.Log($"Z: {_movementZ}");
+
             }
         }
 

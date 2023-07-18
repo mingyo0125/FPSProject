@@ -64,7 +64,10 @@ namespace StarterAssets
 		{
 			move = (Vector2)newMoveDirection;
 			VerticalMovement = newMoveDirection.x;
-			HorizontalMovement = newMoveDirection.z;
+			HorizontalMovement = newMoveDirection.y;
+
+			Debug.Log($"X : {HorizontalMovement}");
+			Debug.Log($"Z : {VerticalMovement}");
 
         } 
 
