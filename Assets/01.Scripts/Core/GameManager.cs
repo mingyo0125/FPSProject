@@ -40,6 +40,22 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public T GetGameComponent<T>() where T : GameComponent
+    {
+        var component = default(T);
+
+        foreach(var gamecomponents in _components)
+        {
+            if (gamecomponents is not T tcomponent) { continue; }
+
+            component = tcomponent;
+
+            break;
+        }
+
+        return component;
+    }
+
     private void MakePool()
     {
         PoolManager.Instance = new PoolManager(transform);
