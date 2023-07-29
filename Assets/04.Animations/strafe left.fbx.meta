@@ -39,14 +39,14 @@ ModelImporter:
       firstFrame: 0
       lastFrame: 31
       wrapMode: 0
-      orientationOffsetY: -50
+      orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -679,7 +679,8 @@ ModelImporter:
     - name: mixamorig7:LeftHandMiddle4
       parentName: mixamorig7:LeftHandMiddle3
       position: {x: 0.000091182534, y: 0.030879742, z: 5.51334e-10}
-      rotation: {x: 0.000000029802319, y: -0.00000010663307, z: -0.000000044410143, w: 1}
+      rotation: {x: 0.000000029802319, y: -0.00000010663307, z: -0.000000044410143,
+        w: 1}
       scale: {x: 1.0000002, y: 0.99999994, z: 1.0000004}
     - name: mixamorig7:LeftHandRing1
       parentName: mixamorig7:LeftHand
@@ -839,7 +840,8 @@ ModelImporter:
     - name: mixamorig7:RightHandPinky4
       parentName: mixamorig7:RightHandPinky3
       position: {x: 0.0000019971708, y: 0.01952412, z: -7.2715406e-10}
-      rotation: {x: -0.000000093132236, y: 0.00000005211841, z: -0.000000028260821, w: 1}
+      rotation: {x: -0.000000093132236, y: 0.00000005211841, z: -0.000000028260821,
+        w: 1}
       scale: {x: 1.0000002, y: 1.0000001, z: 1.0000001}
     - name: mixamorig7:LeftUpLeg
       parentName: mixamorig7:Hips
@@ -903,7 +905,8 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 6a63bb3a5d971d34fa243793ffeb9ae0, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 6a63bb3a5d971d34fa243793ffeb9ae0,
+    type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1

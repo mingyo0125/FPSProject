@@ -36,7 +36,7 @@ public class ThirdPersonShooterController : MonoBehaviour
     {
         _thirdPersonController = GetComponent<ThirdPersonController>();
         _starterAssetsInputs = GetComponent<StarterAssetsInputs>();
-        _animator = GetComponent<Animator>();
+        _animator = transform.Find("Visual").GetComponent<Animator>();
     }
 
     private void Update()
@@ -114,13 +114,6 @@ public class ThirdPersonShooterController : MonoBehaviour
 
             _starterAssetsInputs.shoot = false;
         }
-        
-
-        
     }
 
-    public void PlayFootstepSound()
-    {
-        Debug.Log("FootstepSound");
-    }
 }

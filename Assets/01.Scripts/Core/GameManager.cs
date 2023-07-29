@@ -8,10 +8,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     PoolingListSO _poolingListSO;
 
-    public GameState State { get; private set; }
-
-    private readonly List<IGameComponents> _components = new();
-
     private void Awake()
     {
         if (Instance != null)
@@ -20,40 +16,6 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         MakePool();
-    }
-
-    private void Start()
-    {
-        UpdateState(GameState.Init);
-    }
-
-    public void UpdateState(GameState state)
-    {
-        State = state;
-
-        foreach (var component in _components)
-        {
-            component.UpdateState(state);
-        }
-
-        if (state == GameState.Init) { UpdateState(GameState.Playing); }
-
-    }
-
-    public T GetGameComponent<T>() where T : GameComponent
-    {
-        var component = default(T);
-
-        foreach(var gamecomponents in _components)
-        {
-            if (gamecomponents is not T tcomponent) { continue; }
-
-            component = tcomponent;
-
-            break;
-        }
-
-        return component;
     }
 
     private void MakePool()
