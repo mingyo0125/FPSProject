@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Settings/URP-HighFidelity-Renderer.asset.meta
 guid: c40be3174f62c4acf8c1216858c64956
+========
+guid: e634585d5c4544dd297acaee93dc2beb
+>>>>>>>> Stashed changes:Assets/Settings/URP-Balanced-Renderer.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
