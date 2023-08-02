@@ -44,7 +44,7 @@
                 {
                     "name": "Aim",
                     "type": "PassThrough",
-                    "id": "f59e0d64-716a-42fa-bfe6-6630cfe24c0e",
+                    "id": "0dfbc0c5-fc2d-4e85-80a2-3c448d991c33",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -53,7 +53,7 @@
                 {
                     "name": "Shoot",
                     "type": "PassThrough",
-                    "id": "0ee585c3-51c0-41b0-9cc5-0165763a5afe",
+                    "id": "5ebad47a-d3e1-491e-b2b7-da8189ac6c5c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -239,7 +239,7 @@
                 },
                 {
                     "name": "",
-                    "id": "872e1603-ce80-4d24-8765-e9ff9f71230b",
+                    "id": "385714fb-0db4-4e8d-b9fa-560e2cc01224",
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
@@ -250,7 +250,7 @@
                 },
                 {
                     "name": "",
-                    "id": "2890c71f-42ca-4b06-a19c-661d39ae0a7a",
+                    "id": "ab064e04-9157-41df-9dae-cb016644ba0e",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",
@@ -261,7 +261,7 @@
                 },
                 {
                     "name": "",
-                    "id": "1347fca2-ee63-4932-85ae-7435f5760494",
+                    "id": "4509972a-c59c-49fe-ac52-34d33c8ed4e8",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
@@ -272,7 +272,7 @@
                 },
                 {
                     "name": "",
-                    "id": "96da786e-c9b2-43a3-96e8-148ff387c823",
+                    "id": "4635f8f4-640b-4856-b879-f402d4713d5d",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
                     "processors": "",

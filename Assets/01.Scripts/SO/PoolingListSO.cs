@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class PoolingPair
+public class WeaPonPoolingPair
 {
     public PoolableMono prefab;
     public int poolCount;
@@ -13,5 +13,5 @@ public class PoolingPair
 [CreateAssetMenu(menuName = "SO/Pool/list")]
 public class PoolingListSO : ScriptableObject
 {
-    public List<PoolingPair> List;
+    public List<WeaPonPoolingPair> List;
 }
