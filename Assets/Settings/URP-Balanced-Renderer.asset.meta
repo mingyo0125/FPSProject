@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< Updated upstream:Assets/Settings/URP-Balanced-Renderer.asset.meta
 guid: e634585d5c4544dd297acaee93dc2beb
-========
-guid: 85f61ec9fa7114d5f88c736532abeeef
->>>>>>>> Stashed changes:Assets/Settings/High_PipelineAsset.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000
