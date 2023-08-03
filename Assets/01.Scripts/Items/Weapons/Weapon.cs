@@ -9,6 +9,7 @@ public abstract class Weapon : MonoBehaviour
     protected float damage;
     protected float armorCapacity;
     protected float reloadTime;
+    protected bool canEquip = false;
 
     protected TextMeshPro _text;
 
@@ -18,14 +19,20 @@ public abstract class Weapon : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, GameManager.Instance.PlayerTrm.position) <= 3f)
         {
-            _text.DOFade(1, 1f).OnComplete(() =>
+            if(canEquip == false) { UIManager.Instance.ShowText(_text); return; }
+
+            _text.DOFade(1, 0.1f).OnComplete(() =>
             {
+                canEquip = false;
                 UIManager.Instance.ShowText(_text);
             });
         }
-        else
+        else if(Vector3.Distance(transform.position, GameManager.Instance.PlayerTrm.position) >= 3f)
         {
-            _text.DOFade(0, 1f);
+            _text.DOFade(0, 1f).OnComplete(() =>
+            {
+                canEquip = true;
+            });
         }
     }
 }

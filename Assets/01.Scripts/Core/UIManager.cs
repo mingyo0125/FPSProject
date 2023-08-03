@@ -18,11 +18,8 @@ public class UIManager : MonoBehaviour
 
     public void ShowText(TextMeshPro text)
     {
-        text.gameObject.SetActive(true);
         float moveVec = Mathf.Sin(Time.time) * 0.001f;
         float alpha = Mathf.Sin(Time.time * 5) * 0.4f + 0.6f;
-
-        Debug.Log(moveVec);
 
         text.alpha = alpha;
         text.rectTransform.anchoredPosition += new Vector2(moveVec, 0);
