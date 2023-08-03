@@ -26,5 +26,8 @@ public class UIManager : MonoBehaviour
 
         text.alpha = alpha;
         text.rectTransform.anchoredPosition += new Vector2(moveVec, 0);
+
+        text.rectTransform.LookAt(GameManager.Instance.PlayerTrm.position);
+        text.rectTransform.rotation *= Quaternion.Euler(new Vector3(0, 180f, 0));
     }
 }
