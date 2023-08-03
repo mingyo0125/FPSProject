@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+
+public class UIManager : MonoBehaviour
+{
+    public static UIManager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple UIManager is running");
+        }
+        Instance = this;
+    }
+
+    public void ShowText(TextMeshPro text)
+    {
+        text.gameObject.SetActive(true);
+        float moveVec = Mathf.Sin(Time.time) * 0.001f;
+        float alpha = Mathf.Sin(Time.time * 5) * 0.4f + 0.6f;
+
+        Debug.Log(moveVec);
+
+        text.alpha = alpha;
+        text.rectTransform.anchoredPosition += new Vector2(moveVec, 0);
+    }
+}
