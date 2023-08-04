@@ -52,7 +52,6 @@ public class FirstPersonShooterController : MonoBehaviour
     {
         if(_input.Aim)
         {
-            Debug.Log("321");
             _aimCam.gameObject.SetActive(true);
             _animator.SetLayerWeight(2, Mathf.Lerp(_animator.GetLayerWeight(2), 1f, Time.deltaTime * aimAnimationTime));
         }
@@ -83,8 +82,10 @@ public class FirstPersonShooterController : MonoBehaviour
                 {
                     if (hit.collider.transform.parent.GetComponent<EquipableObject>() != null)
                     {
-                        hit.collider.transform.parent.SetParent(transform);
+                        hit.collider.transform.parent.SetParent(transform.Find("PlayerCameraRoot/Weapon"));
                         hit.collider.transform.parent.Find("EquipText").gameObject.SetActive(false);
+
+                        _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 1f, Time.deltaTime * aimAnimationTime));
                     }
                 }
             }
