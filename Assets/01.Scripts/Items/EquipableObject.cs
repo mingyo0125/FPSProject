@@ -11,7 +11,7 @@ public class EquipableObject : MonoBehaviour
 
     public bool isRange = false;
 
-    public virtual void ShowTextCheck()
+    public void ShowTextCheck()
     {
         if (Vector3.Distance(transform.position, GameManager.Instance.PlayerTrm.position) <= 3f)
         {
@@ -27,7 +27,6 @@ public class EquipableObject : MonoBehaviour
         }
         else if (Vector3.Distance(transform.position, GameManager.Instance.PlayerTrm.position) >= 3f)
         {
-
             _text.DOFade(0, 1f).OnComplete(() =>
             {
                 isRange = true;

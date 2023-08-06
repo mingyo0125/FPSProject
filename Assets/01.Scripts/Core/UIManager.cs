@@ -19,8 +19,6 @@ public class UIManager : MonoBehaviour
 
     public void ShowText(TextMeshPro text)
     {
-        text.DOKill();
-
         float moveVec = Mathf.Sin(Time.time) * 0.001f;
         float alpha = Mathf.Sin(Time.time * 5) * 0.4f + 0.6f;
 

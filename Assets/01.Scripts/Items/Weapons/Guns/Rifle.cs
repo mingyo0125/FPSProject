@@ -7,7 +7,6 @@ public class Rifle : Weapon
 {
     [SerializeField] WeaponsSO _weaponsDataSO;
 
-
     protected override void SetUp()
     {
         this.damage = _weaponsDataSO.List[1].Damage;

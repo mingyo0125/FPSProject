@@ -13,4 +13,5 @@ public abstract class Weapon : MonoBehaviour
     protected TextMeshPro _text;
 
     protected abstract void SetUp();
+
 }
