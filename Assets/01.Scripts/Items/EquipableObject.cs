@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class EquipableObject : MonoBehaviour
 {
@@ -21,17 +22,23 @@ public class EquipableObject : MonoBehaviour
             {
                 isRange = false;
                 UIManager.Instance.ShowText(_text);
-
+                _text.DOKill();
             });
 
         }
         else if (Vector3.Distance(transform.position, GameManager.Instance.PlayerTrm.position) >= 3f)
         {
-            _text.DOFade(0, 1f).OnComplete(() =>
-            {
-                isRange = true;
-            });
+            HideText();
         }
+    }
+
+    public void HideText()
+    {
+        _text.DOFade(0, 1f).OnComplete(() =>
+        {
+            isRange = true;
+            _text.DOKill();
+        });
     }
 
     private void Update()

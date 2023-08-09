@@ -61,12 +61,24 @@ public class FirstPersonShooterController : MonoBehaviour
         if (_input.Aim)
         {
             _aimCam.gameObject.SetActive(true);
+
             _animator.SetLayerWeight(2, Mathf.Lerp(_animator.GetLayerWeight(2), 1f, Time.deltaTime * aimAnimationTime));
+
+            if(_curWeapon != null)
+            {
+                _curWeapon._animator.SetLayerWeight(1, Mathf.Lerp(_curWeapon._animator.GetLayerWeight(1), 1f, Time.deltaTime * aimAnimationTime));
+            }
+
         }
         else
         {
             _aimCam.gameObject.SetActive(false);
             _animator.SetLayerWeight(2, Mathf.Lerp(_animator.GetLayerWeight(2), 0f, Time.deltaTime * aimAnimationTime));
+
+            if (_curWeapon != null)
+            {
+                _curWeapon._animator.SetLayerWeight(1, Mathf.Lerp(_curWeapon._animator.GetLayerWeight(1), 0f, Time.deltaTime * aimAnimationTime));
+            }
         }
     }
 
@@ -86,21 +98,16 @@ public class FirstPersonShooterController : MonoBehaviour
                     hitOutline.enabled = true;
                 }
 
-                if (_input.Interaction && hit.collider.transform.parent.TryGetComponent(out EquipableObject curItem))
+                if (_input.Interaction && hit.collider.TryGetComponent(out EquipableObject curItem))
                 {
                     if (curItem.TryGetComponent(out _curWeapon))
                     {
-                        _curWeapon.transform.Find("EquipText").gameObject.SetActive(false);
+                        curItem.HideText();
 
-                        _curWeapon.transform.SetParent(Camera.main.transform);
+                        _curWeapon.transform.SetParent(Camera.main.transform.Find("Weapon"));
+                        _curWeapon.transform.localRotation = Quaternion.Euler(_rotationOffset);
                         _curWeapon.transform.localPosition = _positionOffset;
-                        _curWeapon.transform.localRotation = Quaternion.Euler(Vector3.zero);
 
-                        GameObject visual = _curWeapon.transform.Find("Visual").gameObject;
-                        visual.transform.localRotation = Quaternion.Euler(_rotationOffset);
-                        visual.transform.localPosition = Vector3.zero;
-
-                        _animator.SetLayerWeight(1, Mathf.Lerp(_animator.GetLayerWeight(1), 1f, Time.deltaTime * aimAnimationTime));
                     }
                 }
             }

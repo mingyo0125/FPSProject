@@ -11,6 +11,8 @@ public abstract class Weapon : MonoBehaviour
     protected float reloadTime;
 
     protected TextMeshPro _text;
+    [HideInInspector]
+    public Animator _animator;
 
     protected abstract void SetUp();
 
