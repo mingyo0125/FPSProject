@@ -10,10 +10,14 @@ public abstract class Weapon : MonoBehaviour
     protected float armorCapacity;
     protected float reloadTime;
 
+    private float intensity = 0.001f;
+    
     protected TextMeshPro _text;
     [HideInInspector]
     public Animator _animator;
 
+    public abstract void GetWeapon();
+    
     protected abstract void SetUp();
 
 }

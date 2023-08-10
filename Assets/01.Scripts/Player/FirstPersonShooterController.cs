@@ -49,6 +49,11 @@ public class FirstPersonShooterController : MonoBehaviour
     {
         //_input.Aim = true;
         Aim();
+
+        if(_input.move != Vector2.zero && _curWeapon != null)
+        {
+            _curWeapon._animator.SetTrigger("Walk");
+        }
     }
 
     private void Start()
@@ -102,11 +107,13 @@ public class FirstPersonShooterController : MonoBehaviour
                 {
                     if (curItem.TryGetComponent(out _curWeapon))
                     {
-                        curItem.HideText();
+                        curItem._text.gameObject.SetActive(false);
 
                         _curWeapon.transform.SetParent(Camera.main.transform.Find("Weapon"));
                         _curWeapon.transform.localRotation = Quaternion.Euler(_rotationOffset);
                         _curWeapon.transform.localPosition = _positionOffset;
+
+                        _curWeapon.GetWeapon();
 
                     }
                 }

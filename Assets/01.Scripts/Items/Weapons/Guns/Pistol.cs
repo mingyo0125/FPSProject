@@ -5,7 +5,11 @@ using UnityEngine;
 public class Pistol : Weapon
 {
     [SerializeField] WeaponsSO _weaponsDataSO;
-    
+
+    public override void GetWeapon()
+    {
+    }
+
     protected override void SetUp()
     {
         this.damage = _weaponsDataSO.List[0].Damage;

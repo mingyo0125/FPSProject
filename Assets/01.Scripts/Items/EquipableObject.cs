@@ -8,7 +8,7 @@ using System;
 public class EquipableObject : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshPro _text;
+    public TextMeshPro _text;
 
     public bool isRange = false;
 
@@ -28,15 +28,19 @@ public class EquipableObject : MonoBehaviour
         }
         else if (Vector3.Distance(transform.position, GameManager.Instance.PlayerTrm.position) >= 3f)
         {
-            HideText();
+            if(_text.color.a > 0)
+            {
+                HideText();
+            }
         }
     }
 
     public void HideText()
     {
+        Debug.Log("¼û±â±â½ÃÀÛ");
         _text.DOFade(0, 1f).OnComplete(() =>
         {
-            isRange = true;
+            Debug.Log("´Ù¼û±è");
             _text.DOKill();
         });
     }
