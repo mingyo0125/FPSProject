@@ -27,7 +27,6 @@ public class FirstPersonShooterController : MonoBehaviour
     [SerializeField]
     private float aimAnimationTime = 10;
 
-
     private StarterAssetsInputs _input;
 
     private Animator _animator;
@@ -35,7 +34,6 @@ public class FirstPersonShooterController : MonoBehaviour
     Vector2 _screenCenterPoint;
 
     Weapon _curWeapon = null;
-
 
     private void Awake()
     {
@@ -50,9 +48,18 @@ public class FirstPersonShooterController : MonoBehaviour
         //_input.Aim = true;
         Aim();
 
-        if(_input.move != Vector2.zero && _curWeapon != null)
+        if(_curWeapon != null)
         {
-            _curWeapon._animator.SetTrigger("Walk");
+            if(_input.move != Vector2.zero)
+            {
+                Debug.Log("걸음");
+                _curWeapon.WeaponAnimator.SetLayerWeight(1, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(1), 1f, Time.deltaTime * aimAnimationTime));
+            }
+            else if(_input.move == Vector2.zero)
+            {
+                Debug.Log("안걸음");
+                _curWeapon.WeaponAnimator.SetLayerWeight(1, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(1), 0f, Time.deltaTime * aimAnimationTime));
+            }
         }
     }
 
@@ -71,7 +78,7 @@ public class FirstPersonShooterController : MonoBehaviour
 
             if(_curWeapon != null)
             {
-                _curWeapon._animator.SetLayerWeight(1, Mathf.Lerp(_curWeapon._animator.GetLayerWeight(1), 1f, Time.deltaTime * aimAnimationTime));
+                _curWeapon.WeaponAnimator.SetLayerWeight(2, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(2), 1f, Time.deltaTime * aimAnimationTime));
             }
 
         }
@@ -82,7 +89,7 @@ public class FirstPersonShooterController : MonoBehaviour
 
             if (_curWeapon != null)
             {
-                _curWeapon._animator.SetLayerWeight(1, Mathf.Lerp(_curWeapon._animator.GetLayerWeight(1), 0f, Time.deltaTime * aimAnimationTime));
+                _curWeapon.WeaponAnimator.SetLayerWeight(2, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(2), 0f, Time.deltaTime * aimAnimationTime));
             }
         }
     }

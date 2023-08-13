@@ -14,7 +14,7 @@ public abstract class Weapon : MonoBehaviour
     
     protected TextMeshPro _text;
     [HideInInspector]
-    public Animator _animator;
+    public Animator WeaponAnimator;
 
     public abstract void GetWeapon();
     

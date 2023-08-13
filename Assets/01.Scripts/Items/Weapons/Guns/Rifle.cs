@@ -18,7 +18,7 @@ public class Rifle : Weapon
         this.armorCapacity = _weaponsDataSO.List[1].ArmorCapacity;
         this.reloadTime = _weaponsDataSO.List[1].ArmorCapacity;
 
-        _animator = GetComponent<Animator>();
+        WeaponAnimator = GetComponent<Animator>();
     }
 
     private void Awake()

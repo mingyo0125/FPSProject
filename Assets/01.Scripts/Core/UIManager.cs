@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
         float alpha = Mathf.Sin(Time.time * 5) * 0.4f + 0.6f;
 
         text.alpha = alpha;
-        text.rectTransform.anchoredPosition += new Vector2(0, moveVec);
+        text.rectTransform.anchoredPosition += new Vector2(0, moveVec * 0.5f);
 
         text.rectTransform.LookAt(GameManager.Instance.PlayerTrm.position);
         text.rectTransform.rotation *= Quaternion.Euler(new Vector3(0, 180f, 0));
