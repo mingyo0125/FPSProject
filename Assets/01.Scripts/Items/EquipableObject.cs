@@ -37,10 +37,8 @@ public class EquipableObject : MonoBehaviour
 
     public void HideText()
     {
-        Debug.Log("¼û±â±â½ÃÀÛ");
         _text.DOFade(0, 1f).OnComplete(() =>
         {
-            Debug.Log("´Ù¼û±è");
             _text.DOKill();
         });
     }

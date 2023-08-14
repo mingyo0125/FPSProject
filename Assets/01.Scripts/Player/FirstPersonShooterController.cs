@@ -45,20 +45,32 @@ public class FirstPersonShooterController : MonoBehaviour
 
     private void Update()
     {
-        //_input.Aim = true;
+        //if (_curWeapon != null) { _input.Aim = true; }
         Aim();
 
-        if(_curWeapon != null)
+        if (_curWeapon != null)
         {
-            if(_input.move != Vector2.zero)
+            if (_input.move != Vector2.zero)
             {
-                Debug.Log("걸음");
-                _curWeapon.WeaponAnimator.SetLayerWeight(1, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(1), 1f, Time.deltaTime * aimAnimationTime));
+                if(_input.Aim)
+                {
+                    _curWeapon.WeaponAnimator.SetLayerWeight(3, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(3), 1f, Time.deltaTime * aimAnimationTime));
+                }
+                else
+                {
+                    _curWeapon.WeaponAnimator.SetLayerWeight(1, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(1), 1f, Time.deltaTime * aimAnimationTime));
+                }
             }
-            else if(_input.move == Vector2.zero)
+            else if (_input.move == Vector2.zero)
             {
-                Debug.Log("안걸음");
-                _curWeapon.WeaponAnimator.SetLayerWeight(1, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(1), 0f, Time.deltaTime * aimAnimationTime));
+                if (_input.Aim)
+                {
+                    _curWeapon.WeaponAnimator.SetLayerWeight(3, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(3), 0f, Time.deltaTime * aimAnimationTime));
+                }
+                else
+                {
+                    _curWeapon.WeaponAnimator.SetLayerWeight(1, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(1), 0f, Time.deltaTime * aimAnimationTime));
+                }
             }
         }
     }
@@ -70,22 +82,23 @@ public class FirstPersonShooterController : MonoBehaviour
 
     private void Aim()
     {
-        if (_input.Aim)
+        if (_input.Aim && _curWeapon != null)
         {
             _aimCam.gameObject.SetActive(true);
 
             _animator.SetLayerWeight(2, Mathf.Lerp(_animator.GetLayerWeight(2), 1f, Time.deltaTime * aimAnimationTime));
 
-            if(_curWeapon != null)
-            {
-                _curWeapon.WeaponAnimator.SetLayerWeight(2, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(2), 1f, Time.deltaTime * aimAnimationTime));
-            }
+            _curWeapon.WeaponAnimator.SetLayerWeight(2, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(2), 1f, Time.deltaTime * aimAnimationTime));
 
         }
         else
         {
             _aimCam.gameObject.SetActive(false);
             _animator.SetLayerWeight(2, Mathf.Lerp(_animator.GetLayerWeight(2), 0f, Time.deltaTime * aimAnimationTime));
+            if (_curWeapon != null)
+            {
+                _curWeapon.WeaponAnimator.SetLayerWeight(3, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(3), 0f, Time.deltaTime * aimAnimationTime));
+            }
 
             if (_curWeapon != null)
             {
@@ -119,6 +132,8 @@ public class FirstPersonShooterController : MonoBehaviour
                         _curWeapon.transform.SetParent(Camera.main.transform.Find("Weapon"));
                         _curWeapon.transform.localRotation = Quaternion.Euler(_rotationOffset);
                         _curWeapon.transform.localPosition = _positionOffset;
+
+                        //_curWeapon.transform.Find("arm").transform.localPosition = Vector3.zero;
 
                         _curWeapon.GetWeapon();
 
