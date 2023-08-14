@@ -35,6 +35,8 @@ public class FirstPersonShooterController : MonoBehaviour
 
     Weapon _curWeapon = null;
 
+    Ray _cameraCenterRay;
+
     private void Awake()
     {
         _input = GetComponent<StarterAssetsInputs>();
@@ -47,12 +49,16 @@ public class FirstPersonShooterController : MonoBehaviour
     {
         //if (_curWeapon != null) { _input.Aim = true; }
         Aim();
+        Walk();
+    }
 
+    private void Walk()
+    {
         if (_curWeapon != null)
         {
             if (_input.move != Vector2.zero)
             {
-                if(_input.Aim)
+                if (_input.Aim)
                 {
                     _curWeapon.WeaponAnimator.SetLayerWeight(3, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(3), 1f, Time.deltaTime * aimAnimationTime));
                 }
@@ -78,6 +84,7 @@ public class FirstPersonShooterController : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Interaction());
+        StartCoroutine(Shoot());
     }
 
     private void Aim()
@@ -114,9 +121,9 @@ public class FirstPersonShooterController : MonoBehaviour
 
         while (true)
         {
-            Ray ray = Camera.main.ScreenPointToRay(_screenCenterPoint);
+            _cameraCenterRay = Camera.main.ScreenPointToRay(_screenCenterPoint);
 
-            if (Physics.Raycast(ray, out hit, 3f, _interactionlayerMask))
+            if (Physics.Raycast(_cameraCenterRay, out hit, 3f, _interactionlayerMask))
             {
                 if (hit.collider.TryGetComponent(out hitOutline))
                 {
@@ -133,7 +140,10 @@ public class FirstPersonShooterController : MonoBehaviour
                         _curWeapon.transform.localRotation = Quaternion.Euler(_rotationOffset);
                         _curWeapon.transform.localPosition = _positionOffset;
 
-                        //_curWeapon.transform.Find("arm").transform.localPosition = Vector3.zero;
+                        _curWeapon.transform.Find("Arm").gameObject.SetActive(true);
+
+                        SkinnedMeshRenderer skinnedMeshRenderer = transform.Find("Armature_Mesh").GetComponent<SkinnedMeshRenderer>();
+                        skinnedMeshRenderer.enabled = false;
 
                         _curWeapon.GetWeapon();
 
@@ -147,6 +157,22 @@ public class FirstPersonShooterController : MonoBehaviour
                 hitOutline = null;
             }
 
+            yield return null;
+        }
+    }
+
+    private IEnumerator Shoot()
+    {
+        RaycastHit hit;
+        while(true)
+        {
+            if (_input.Shoot)
+            {
+                if (Physics.Raycast(_cameraCenterRay, out hit, 999f))
+                {
+                    Debug.Log(hit.collider.name);
+                }
+            }
             yield return null;
         }
     }
