@@ -12,6 +12,8 @@ public class FirstPersonShooterController : MonoBehaviour
     private CinemachineVirtualCamera _aimCam;
     [SerializeField]
     private LayerMask _interactionlayerMask;
+    [SerializeField]
+    private LayerMask _shootlayerMask;
 
     [Space]
 
@@ -37,10 +39,17 @@ public class FirstPersonShooterController : MonoBehaviour
 
     Ray _cameraCenterRay;
 
+    SkinnedMeshRenderer skinnedMeshRenderer;
+
+    [SerializeField]
+    private GameObject _testbullet;
+
     private void Awake()
     {
         _input = GetComponent<StarterAssetsInputs>();
         _animator = GetComponent<Animator>();
+        skinnedMeshRenderer = transform.Find("Armature_Mesh").GetComponent<SkinnedMeshRenderer>();
+
 
         _screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
     }
@@ -60,22 +69,22 @@ public class FirstPersonShooterController : MonoBehaviour
             {
                 if (_input.Aim)
                 {
-                    _curWeapon.WeaponAnimator.SetLayerWeight(3, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(3), 1f, Time.deltaTime * aimAnimationTime));
+                    SetLayerWeight(_curWeapon.WeaponAnimator, 3, 1f);
                 }
                 else
                 {
-                    _curWeapon.WeaponAnimator.SetLayerWeight(1, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(1), 1f, Time.deltaTime * aimAnimationTime));
+                    SetLayerWeight(_curWeapon.WeaponAnimator, 1, 1f);
                 }
             }
             else if (_input.move == Vector2.zero)
             {
                 if (_input.Aim)
                 {
-                    _curWeapon.WeaponAnimator.SetLayerWeight(3, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(3), 0f, Time.deltaTime * aimAnimationTime));
+                    SetLayerWeight(_curWeapon.WeaponAnimator, 3, 0f);
                 }
                 else
                 {
-                    _curWeapon.WeaponAnimator.SetLayerWeight(1, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(1), 0f, Time.deltaTime * aimAnimationTime));
+                    SetLayerWeight(_curWeapon.WeaponAnimator, 1, 0f);
                 }
             }
         }
@@ -87,45 +96,52 @@ public class FirstPersonShooterController : MonoBehaviour
         StartCoroutine(Shoot());
     }
 
+    private RaycastHit CameraCenterRayHit(LayerMask layerMask)  //코루틴 아니라 그냥 rycasthit를 반환하게 만들기
+    {
+        RaycastHit hit;
+        _cameraCenterRay = Camera.main.ScreenPointToRay(_screenCenterPoint);
+
+        if (Physics.Raycast(_cameraCenterRay, out hit, 999f, layerMask))
+        {
+            _testbullet.transform.position = hit.point;
+        }
+        return hit;
+    }
+
     private void Aim()
     {
         if (_input.Aim && _curWeapon != null)
         {
             _aimCam.gameObject.SetActive(true);
 
-            _animator.SetLayerWeight(2, Mathf.Lerp(_animator.GetLayerWeight(2), 1f, Time.deltaTime * aimAnimationTime));
-
-            _curWeapon.WeaponAnimator.SetLayerWeight(2, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(2), 1f, Time.deltaTime * aimAnimationTime));
-
+            SetLayerWeight(_animator, 2, 1f);
+            SetLayerWeight(_curWeapon.WeaponAnimator, 2, 1f);
         }
         else
         {
             _aimCam.gameObject.SetActive(false);
-            _animator.SetLayerWeight(2, Mathf.Lerp(_animator.GetLayerWeight(2), 0f, Time.deltaTime * aimAnimationTime));
+            SetLayerWeight(_animator, 2, 0f);
             if (_curWeapon != null)
             {
-                _curWeapon.WeaponAnimator.SetLayerWeight(3, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(3), 0f, Time.deltaTime * aimAnimationTime));
+                SetLayerWeight(_curWeapon.WeaponAnimator, 3, 0f);
             }
 
             if (_curWeapon != null)
             {
-                _curWeapon.WeaponAnimator.SetLayerWeight(2, Mathf.Lerp(_curWeapon.WeaponAnimator.GetLayerWeight(2), 0f, Time.deltaTime * aimAnimationTime));
+                SetLayerWeight(_curWeapon.WeaponAnimator, 2, 0f);
             }
         }
     }
 
     public IEnumerator Interaction()
     {
-        RaycastHit hit;
         Outline hitOutline = null;
-
         while (true)
         {
-            _cameraCenterRay = Camera.main.ScreenPointToRay(_screenCenterPoint);
-
-            if (Physics.Raycast(_cameraCenterRay, out hit, 3f, _interactionlayerMask))
+            RaycastHit hit = CameraCenterRayHit(_interactionlayerMask);
+            if(hit.collider != null)
             {
-                if (hit.collider.TryGetComponent(out hitOutline))
+                if (hit.collider.TryGetComponent(out hitOutline) && _curWeapon == null)
                 {
                     hitOutline.enabled = true;
                 }
@@ -142,7 +158,6 @@ public class FirstPersonShooterController : MonoBehaviour
 
                         _curWeapon.transform.Find("Arm").gameObject.SetActive(true);
 
-                        SkinnedMeshRenderer skinnedMeshRenderer = transform.Find("Armature_Mesh").GetComponent<SkinnedMeshRenderer>();
                         skinnedMeshRenderer.enabled = false;
 
                         _curWeapon.GetWeapon();
@@ -163,17 +178,22 @@ public class FirstPersonShooterController : MonoBehaviour
 
     private IEnumerator Shoot()
     {
-        RaycastHit hit;
         while(true)
         {
+            RaycastHit hit = CameraCenterRayHit(_shootlayerMask);
+
             if (_input.Shoot)
             {
-                if (Physics.Raycast(_cameraCenterRay, out hit, 999f))
+                if (hit.collider != null)
                 {
-                    Debug.Log(hit.collider.name);
                 }
             }
             yield return null;
         }
+    }
+
+    private void SetLayerWeight(Animator animtor, int layeridx, float weight)
+    {
+        animtor.SetLayerWeight(layeridx, Mathf.Lerp(animtor.GetLayerWeight(layeridx), weight, Time.deltaTime * aimAnimationTime));
     }
 }
