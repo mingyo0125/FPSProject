@@ -18,8 +18,9 @@ public class ChaseAIState : CommonAIState
 
     public override void OnExitState()
     {
-        _enemyController.AgentAnimator.SetWalkForward(false);
         Debug.Log("ChaseStateExit");
+
+        _enemyController.AgentAnimator.SetWalkForward(false);
     }
 
     private void FootStepHandle()

@@ -42,7 +42,7 @@ public class EnemyController : PoolableMono
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavAgentMovement>();
-        _agentAnimator = GetComponent<AgentAnimator>();
+        _agentAnimator = transform.Find("Visual").GetComponent<AgentAnimator>();
 
         List<CommonAIState> states = new List<CommonAIState>();
         transform.Find("AI").GetComponentsInChildren<CommonAIState>(states);

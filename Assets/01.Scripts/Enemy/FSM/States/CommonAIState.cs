@@ -16,6 +16,7 @@ public abstract class CommonAIState : MonoBehaviour, IState
 
     public virtual void SetUp(Transform agentRoot)
     {
+        Debug.Log(agentRoot);
         _enemyController = agentRoot.GetComponent<EnemyController>();
         _aiActionData = agentRoot.Find("AI").GetComponent<AIActionData>();
 

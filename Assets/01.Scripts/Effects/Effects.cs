@@ -10,7 +10,6 @@ public class Effects : PoolableMono
     public override void Init()
     {
         particle = GetComponent<ParticleSystem>();
-        transform.localPosition = Vector3.zero;
         StartCoroutine(EffectLifeTime());
     }
 
