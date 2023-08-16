@@ -51,18 +51,18 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Shoot",
+                    "name": "Interaction",
                     "type": "Button",
-                    "id": "5ebad47a-d3e1-491e-b2b7-da8189ac6c5c",
+                    "id": "1a9bb151-d9f7-4614-81d4-685d6c67a52c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Interaction",
+                    "name": "Shoot",
                     "type": "Button",
-                    "id": "1a9bb151-d9f7-4614-81d4-685d6c67a52c",
+                    "id": "d7d68682-307e-4ac1-a666-ae3411e86a4b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -270,23 +270,23 @@
                 },
                 {
                     "name": "",
-                    "id": "4509972a-c59c-49fe-ac52-34d33c8ed4e8",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "160426be-4307-4136-bef5-66a36b183cc6",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "033749ff-0748-4832-97f0-6b3b6da205e2",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

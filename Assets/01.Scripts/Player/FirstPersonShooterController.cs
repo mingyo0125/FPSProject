@@ -41,8 +41,12 @@ public class FirstPersonShooterController : MonoBehaviour
 
     SkinnedMeshRenderer skinnedMeshRenderer;
 
+    Vector3 _shootEffectPos;
+
     [SerializeField]
     private GameObject _testbullet;
+    [SerializeField]
+    private ParticleSystem _particleSystem;
 
     private void Awake()
     {
@@ -158,6 +162,7 @@ public class FirstPersonShooterController : MonoBehaviour
 
                         _curWeapon.transform.Find("Arm").gameObject.SetActive(true);
 
+
                         skinnedMeshRenderer.enabled = false;
 
                         _curWeapon.GetWeapon();
@@ -182,10 +187,15 @@ public class FirstPersonShooterController : MonoBehaviour
         {
             RaycastHit hit = CameraCenterRayHit(_shootlayerMask);
 
-            if (_input.Shoot)
+            if (_input.Shoot && _curWeapon != null)
             {
                 if (hit.collider != null)
                 {
+                    Effects effet = PoolManager.Instance.Pop("Hit_02") as Effects;
+                    effet.transform.SetParent(_curWeapon.transform.Find("EffectPosition").transform);
+                    effet.transform.localPosition = Vector3.zero;
+
+                    _input.Shoot = false;
                 }
             }
             yield return null;
