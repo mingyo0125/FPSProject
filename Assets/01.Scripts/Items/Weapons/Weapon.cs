@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using DG.Tweening;
 
 public abstract class Weapon : MonoBehaviour
 {
@@ -18,6 +17,8 @@ public abstract class Weapon : MonoBehaviour
 
     public abstract void GetWeapon();
     
-    protected abstract void SetUp();
+    public abstract void SetUp(Vector3 rotateOffset, Vector3 positionOffset);
+
+    public abstract void SpawnEffect();
 
 }

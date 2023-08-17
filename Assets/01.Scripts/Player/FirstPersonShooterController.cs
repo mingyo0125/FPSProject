@@ -35,25 +35,17 @@ public class FirstPersonShooterController : MonoBehaviour
 
     Vector2 _screenCenterPoint;
 
-    Weapon _curWeapon = null;
+    public Weapon _curWeapon = null;
 
     Ray _cameraCenterRay;
 
-    SkinnedMeshRenderer skinnedMeshRenderer;
-
-    Vector3 _shootEffectPos;
-
     [SerializeField]
     private GameObject _testbullet;
-    [SerializeField]
-    private ParticleSystem _particleSystem;
 
     private void Awake()
     {
         _input = GetComponent<StarterAssetsInputs>();
         _animator = GetComponent<Animator>();
-        skinnedMeshRenderer = transform.Find("Armature_Mesh").GetComponent<SkinnedMeshRenderer>();
-
 
         _screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
     }
@@ -100,7 +92,7 @@ public class FirstPersonShooterController : MonoBehaviour
         StartCoroutine(Shoot());
     }
 
-    private RaycastHit CameraCenterRayHit(LayerMask layerMask)  //코루틴 아니라 그냥 rycasthit를 반환하게 만들기
+    private RaycastHit CameraCenterRayHit(LayerMask layerMask)
     {
         RaycastHit hit;
         _cameraCenterRay = Camera.main.ScreenPointToRay(_screenCenterPoint);
@@ -156,16 +148,7 @@ public class FirstPersonShooterController : MonoBehaviour
                     {
                         curItem._text.gameObject.SetActive(false);
 
-                        _curWeapon.transform.SetParent(Camera.main.transform.Find("Weapon"));
-                        _curWeapon.transform.localRotation = Quaternion.Euler(_rotationOffset);
-                        _curWeapon.transform.localPosition = _positionOffset;
-
-                        _curWeapon.transform.Find("Arm").gameObject.SetActive(true);
-
-
-                        skinnedMeshRenderer.enabled = false;
-
-                        _curWeapon.GetWeapon();
+                        _curWeapon.SetUp(_rotationOffset, _positionOffset);
 
                     }
                 }
@@ -191,9 +174,15 @@ public class FirstPersonShooterController : MonoBehaviour
             {
                 if (hit.collider != null)
                 {
-                    Effects effet = PoolManager.Instance.Pop("Hit_02") as Effects;
-                    effet.transform.SetParent(_curWeapon.transform.Find("EffectPosition").transform);
-                    effet.transform.localPosition = Vector3.zero;
+                    _curWeapon.SpawnEffect();
+
+                    if (hit.transform.Find("EffectPosition"))
+                    {
+                        ParticleSystem particle = hit.transform.Find("EffectPosition").GetComponent<ParticleSystem>();
+                        Debug.Log("hit");
+                        particle.transform.position = hit.point;
+                        particle.Play();
+                    }
 
                     _input.Shoot = false;
                 }

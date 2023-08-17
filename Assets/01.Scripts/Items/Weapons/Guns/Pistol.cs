@@ -10,16 +10,16 @@ public class Pistol : Weapon
     {
     }
 
-    protected override void SetUp()
+    public override void SetUp(Vector3 rotateOffset, Vector3 positionOffset)
     {
         this.damage = _weaponsDataSO.List[0].Damage;
         this.armorCapacity = _weaponsDataSO.List[0].ArmorCapacity;
         this.reloadTime = _weaponsDataSO.List[0].ArmorCapacity;
+
     }
 
-    private void Awake()
+    public override void SpawnEffect()
     {
-        SetUp();
     }
 
     private void Update()
