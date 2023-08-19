@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7822466092380209735}
   - component: {fileID: 4350626446691684778}
   - component: {fileID: 1050184701036373541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4893,7 +4893,7 @@ GameObject:
   - component: {fileID: 4664980042958797324}
   - component: {fileID: 4664980042958797330}
   - component: {fileID: 4664980042958797331}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4932,7 +4932,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9776,7 +9776,7 @@ GameObject:
   - component: {fileID: 4794796692778296959}
   - component: {fileID: 4794796692778296958}
   - component: {fileID: 4794796692778296957}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Haze Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9815,7 +9815,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -14667,7 +14667,7 @@ GameObject:
   - component: {fileID: 5024009746357069193}
   - component: {fileID: 5024009746357069192}
   - component: {fileID: 5024009746357069195}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Hit_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14702,14 +14702,14 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 0.75
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

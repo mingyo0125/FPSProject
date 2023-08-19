@@ -61,7 +61,7 @@
                 },
                 {
                     "name": "Shoot",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "d7d68682-307e-4ac1-a666-ae3411e86a4b",
                     "expectedControlType": "Button",
                     "processors": "",
