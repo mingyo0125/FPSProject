@@ -5,7 +5,8 @@ using TMPro;
 
 public abstract class Weapon : MonoBehaviour
 {
-    protected float damage;
+    [HideInInspector]
+    public float Damage;
     protected float armorCapacity;
     protected float reloadTime;
 
@@ -20,5 +21,4 @@ public abstract class Weapon : MonoBehaviour
     public abstract void SetUp(Vector3 rotateOffset, Vector3 positionOffset);
 
     public abstract void SpawnEffect();
-
 }

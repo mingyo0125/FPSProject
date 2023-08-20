@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using DG.Tweening;
+using UnityEngine.Events;
+using System;
 
-public class EnemyController : PoolableMono
+public class EnemyController : PoolableMono, IDamage
 {
     [SerializeField]
     private CommonAIState _currentState;
@@ -26,6 +29,10 @@ public class EnemyController : PoolableMono
 
     private List<AITransition> _anyTransitions = new List<AITransition>();
     public List<AITransition> AnyTransitions => _anyTransitions;
+
+    public UnityEvent onDieEvnet;
+    private MeshCollider _collider;
+    float hp;
 
     private void Start()
     {
@@ -50,6 +57,9 @@ public class EnemyController : PoolableMono
         //각 state에 대한 셋업
         states.ForEach(s => s.SetUp(transform)); //state -> transitions -> Decision 순서롤 셋업을 해준다.
 
+        hp = _spiderDataSO.MaxHP;
+        _collider = transform.Find("Visual/Polygonal Metalon").GetComponent<MeshCollider>();
+        _agentAnimator.OnAnimationEndTrigger += Die;
     }
 
     public void ChangeState(CommonAIState nextstate)
@@ -65,4 +75,27 @@ public class EnemyController : PoolableMono
         _actionData.Init();
     }
 
+    public void OnDamage(float damage)
+    {
+        hp -= damage;
+
+        Debug.Log(hp);
+
+        if(hp <= 0)
+        {
+
+            _agentAnimator.SetDie();
+            _collider.enabled = false;
+        }
+    }
+
+    private void Die()
+    {
+        onDieEvnet?.Invoke();
+    }
+
+    public void GotoPool()
+    {
+        PoolManager.Instance.Push(this);
+    }
 }

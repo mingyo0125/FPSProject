@@ -175,8 +175,6 @@ public class FirstPersonShooterController : MonoBehaviour
                 if (hit.collider != null)
                 {
                     _curWeapon.SpawnEffect();
-                    Debug.Log(hit.collider);
-
 
                     if (hit.transform.Find("EffectPosition"))
                     {
@@ -184,6 +182,11 @@ public class FirstPersonShooterController : MonoBehaviour
                         
                         particle.transform.position = hit.point;
                         particle.Play();
+                    }
+
+                    if(hit.transform.parent.parent.TryGetComponent(out EnemyController enemyController))
+                    {
+                        enemyController.OnDamage(_curWeapon.Damage);
                     }
 
                     _input.Shoot = false;
