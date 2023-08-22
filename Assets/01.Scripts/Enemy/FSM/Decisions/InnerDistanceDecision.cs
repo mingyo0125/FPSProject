@@ -13,8 +13,9 @@ public class InnerDistanceDecision : AIDecision
 
         float distacne = Vector3.Distance(_enemyController.TargetTrm.position, transform.position);
 
-        if(distacne <= _distance)
+        if(distacne <= _distance && Vector3.Dot(transform.forward, _enemyController.TargetTrm.position) >= 17)
         {
+            Debug.Log(Vector3.Dot(transform.forward, _enemyController.TargetTrm.position));
             _aiActionData.LastSpotPoint = _enemyController.TargetTrm.position;
             _aiActionData.TargetSpotted = true;
         }

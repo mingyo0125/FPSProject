@@ -6,7 +6,7 @@ using DG.Tweening;
 using UnityEngine.Events;
 using System;
 
-public class EnemyController : PoolableMono, IDamage
+public class EnemyController : PoolableMono, IDamageAble
 {
     [SerializeField]
     private CommonAIState _currentState;
@@ -32,13 +32,16 @@ public class EnemyController : PoolableMono, IDamage
 
     public UnityEvent onDieEvnet;
     private MeshCollider _collider;
-    float hp;
+
+    private float hp;
+    public float HP => hp;
 
     private void Start()
     {
         _navMeshAgent.SetInitData(_spiderDataSO.MoveSpeed);
 
-        _targetTrm = GameManager.Instance.PlayerTrm; //범위는 오버랩 스피어로 나중에 지정
+        hp = _spiderDataSO.MaxHP;
+        _targetTrm = GameManager.Instance.PlayerTrm;
     }
 
     private void Update()
@@ -57,7 +60,6 @@ public class EnemyController : PoolableMono, IDamage
         //각 state에 대한 셋업
         states.ForEach(s => s.SetUp(transform)); //state -> transitions -> Decision 순서롤 셋업을 해준다.
 
-        hp = _spiderDataSO.MaxHP;
         _collider = transform.Find("Visual/Polygonal Metalon").GetComponent<MeshCollider>();
         _agentAnimator.OnAnimationEndTrigger += Die;
     }
@@ -83,7 +85,6 @@ public class EnemyController : PoolableMono, IDamage
 
         if(hp <= 0)
         {
-
             _agentAnimator.SetDie();
             _collider.enabled = false;
         }
@@ -98,4 +99,5 @@ public class EnemyController : PoolableMono, IDamage
     {
         PoolManager.Instance.Push(this);
     }
+
 }

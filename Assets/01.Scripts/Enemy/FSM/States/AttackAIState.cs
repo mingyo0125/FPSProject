@@ -10,6 +10,8 @@ public class AttackAIState : CommonAIState
 
     private float _lastAtkTime;
 
+    private float range = 30f;
+
     public override void SetUp(Transform agentRoot)
     {
         base.SetUp(agentRoot);
@@ -65,7 +67,6 @@ public class AttackAIState : CommonAIState
 
     public override bool UpdateState()
     {
-
         if (base.UpdateState()) { return true; }
 
         if (_aiActionData.IsAttacking == false && isActive)
@@ -75,7 +76,5 @@ public class AttackAIState : CommonAIState
         }
 
         return false;
-
-
     }
 }

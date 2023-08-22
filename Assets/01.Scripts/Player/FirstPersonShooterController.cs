@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FirstPersonShooterController : MonoBehaviour
+public class FirstPersonShooterController : MonoBehaviour, IDamageAble
 {
     [Header("Assigns")]
     [SerializeField]
@@ -38,6 +38,9 @@ public class FirstPersonShooterController : MonoBehaviour
     public Weapon _curWeapon = null;
 
     Ray _cameraCenterRay;
+
+    private float mapHp = 30;
+    private float currentHp;
 
     [SerializeField]
     private GameObject _testbullet;
@@ -90,6 +93,8 @@ public class FirstPersonShooterController : MonoBehaviour
     {
         StartCoroutine(Interaction());
         StartCoroutine(Shoot());
+
+        currentHp = mapHp;
     }
 
     private RaycastHit CameraCenterRayHit(LayerMask layerMask)
@@ -199,5 +204,14 @@ public class FirstPersonShooterController : MonoBehaviour
     private void SetLayerWeight(Animator animtor, int layeridx, float weight)
     {
         animtor.SetLayerWeight(layeridx, Mathf.Lerp(animtor.GetLayerWeight(layeridx), weight, Time.deltaTime * aimAnimationTime));
+    }
+
+    public void OnDamage(float damage)
+    {
+        currentHp -= damage;
+        if(currentHp <= 0)
+        {
+            Debug.Log("Ã³µðÁü");
+        }
     }
 }
