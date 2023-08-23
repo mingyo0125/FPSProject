@@ -214,6 +214,9 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
     public void OnDamage(float damage)
     {
         currentHp -= damage;
+
+        Debug.Log($"Player : {currentHp}");
+
         if(currentHp <= 0)
         {
             Debug.Log("Ã³µðÁü");

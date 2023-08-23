@@ -8,6 +8,8 @@ public class AttackAIState : CommonAIState
     protected Vector3 _targetVec;
     protected bool isActive = false;
 
+    int playerLayer = 1 << 6;
+
     public override void SetUp(Transform agentRoot)
     {
         base.SetUp(agentRoot);
@@ -68,6 +70,24 @@ public class AttackAIState : CommonAIState
         {
             _enemyController.AgentAnimator.SetStackAttack(true);
             _aiActionData.IsAttacking = true;
+
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 5f, playerLayer);
+
+            foreach (Collider collider in colliders)
+            {
+                if(collider.gameObject != null)
+                {
+                    Debug.Log(collider.name);
+
+                    if (collider.transform.TryGetComponent(out FirstPersonShooterController player))
+                    {
+                        Debug.Log("때려보리기");
+                        player.OnDamage(_enemyController.Damage);
+                    }
+                }
+                
+            }
+
         }
 
         return false;

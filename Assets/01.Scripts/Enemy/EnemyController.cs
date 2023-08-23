@@ -40,11 +40,16 @@ public class EnemyController : PoolableMono, IDamageAble
     private float hp;
     public float HP => hp;
 
+    private float damage;
+    public float Damage => damage;
+
     private void Start()
     {
         _navMeshAgent.SetInitData(_spiderDataSO.MoveSpeed);
 
         hp = _spiderDataSO.MaxHP;
+        damage = _spiderDataSO.AtkDamage;
+
         _targetTrm = GameManager.Instance.PlayerTrm;
     }
 
