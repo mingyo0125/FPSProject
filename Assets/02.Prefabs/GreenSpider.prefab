@@ -50,7 +50,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6331105092537815963}
         m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
-        m_MethodName: GotoPool
+        m_MethodName: AfterDissolve
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1860,7 +1860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsReverse: 0
-  _distance: 2
+  _distance: 3
 --- !u!1 &7293409407239161107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2020,7 +2020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsReverse: 0
-  _distance: 5
+  _distance: 10
 --- !u!1 &7293409407823566688
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,7 +2081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsReverse: 1
-  _distance: 2
+  _distance: 3
 --- !u!114 &7293409407823566692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2239,7 +2239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsReverse: 1
-  _distance: 5
+  _distance: 10
 --- !u!114 &7293409408236362557
 MonoBehaviour:
   m_ObjectHideFlags: 0

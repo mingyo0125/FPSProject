@@ -9,13 +9,12 @@ public class InnerDistanceDecision : AIDecision
 
     public override bool MakeDecision()
     {
-        if (_enemyController.TargetTrm == null) { return false; } //안되면 true로 수정
+        if (_enemyController.TargetTrm == null) { return false; }
 
         float distacne = Vector3.Distance(_enemyController.TargetTrm.position, transform.position);
 
-        if(distacne <= _distance && Vector3.Dot(transform.forward, _enemyController.TargetTrm.position) >= 17)
+        if(distacne <= _distance)
         {
-            Debug.Log(Vector3.Dot(transform.forward, _enemyController.TargetTrm.position));
             _aiActionData.LastSpotPoint = _enemyController.TargetTrm.position;
             _aiActionData.TargetSpotted = true;
         }

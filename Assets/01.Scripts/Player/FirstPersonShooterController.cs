@@ -28,6 +28,8 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
     [Header("Values")]
     [SerializeField]
     private float aimAnimationTime = 10;
+    private float interactionRange = 5f;
+    private float shootRange = 50f;
 
     private StarterAssetsInputs _input;
 
@@ -44,6 +46,8 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
 
     [SerializeField]
     private GameObject _testbullet;
+
+
 
     private void Awake()
     {
@@ -97,12 +101,12 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
         currentHp = mapHp;
     }
 
-    private RaycastHit CameraCenterRayHit(LayerMask layerMask)
+    private RaycastHit CameraCenterRayHit(LayerMask layerMask, float distance)
     {
         RaycastHit hit;
         _cameraCenterRay = Camera.main.ScreenPointToRay(_screenCenterPoint);
 
-        if (Physics.Raycast(_cameraCenterRay, out hit, 999f, layerMask))
+        if (Physics.Raycast(_cameraCenterRay, out hit,distance , layerMask))
         {
             _testbullet.transform.position = hit.point;
         }
@@ -139,7 +143,7 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
         Outline hitOutline = null;
         while (true)
         {
-            RaycastHit hit = CameraCenterRayHit(_interactionlayerMask);
+            RaycastHit hit = CameraCenterRayHit(_interactionlayerMask, interactionRange);
             if(hit.collider != null)
             {
                 if (hit.collider.TryGetComponent(out hitOutline) && _curWeapon == null)
@@ -165,6 +169,7 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
                 hitOutline = null;
             }
 
+            _input.Interaction = false;
             yield return null;
         }
     }
@@ -173,7 +178,7 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
     {
         while(true)
         {
-            RaycastHit hit = CameraCenterRayHit(_shootlayerMask);
+            RaycastHit hit = CameraCenterRayHit(_shootlayerMask, shootRange);
 
             if (_input.Shoot && _curWeapon != null)
             {
@@ -181,9 +186,9 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
                 {
                     _curWeapon.SpawnEffect();
 
-                    if (hit.transform.Find("EffectPosition"))
+                    if (hit.transform.parent.Find("EffectPosition"))
                     {
-                        ParticleSystem particle = hit.transform.Find("EffectPosition").GetComponent<ParticleSystem>();
+                        ParticleSystem particle = hit.transform.parent.Find("EffectPosition").GetComponent<ParticleSystem>();
                         
                         particle.transform.position = hit.point;
                         particle.Play();

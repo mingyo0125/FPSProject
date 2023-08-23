@@ -8,10 +8,6 @@ public class AttackAIState : CommonAIState
     protected Vector3 _targetVec;
     protected bool isActive = false;
 
-    private float _lastAtkTime;
-
-    private float range = 30f;
-
     public override void SetUp(Transform agentRoot)
     {
         base.SetUp(agentRoot);
@@ -43,7 +39,6 @@ public class AttackAIState : CommonAIState
     private void AttackAnimationEndHandle()
     {
         _enemyController.AgentAnimator.SetStackAttack(false);
-        _lastAtkTime = Time.time;
 
         StartCoroutine(DelayCoroutine(() =>  _aiActionData.IsAttacking = false, _enemyController.SpiderDataSO.MotionDelay));
     }
