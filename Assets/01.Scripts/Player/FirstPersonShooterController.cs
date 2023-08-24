@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class FirstPersonShooterController : MonoBehaviour, IDamageAble
@@ -51,6 +52,9 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
 
     [SerializeField]
     Image _bloodHubEffect;
+
+    [SerializeField]
+    UnityEvent OnDie;
 
     private void Awake()
     {
@@ -220,8 +224,6 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
 
         Debug.Log($"Player : {currentHp}");
 
-        //다트윈으로 슈슉하고 나왔다 사라지게
-
         _bloodHubEffect.DOKill();
         _bloodHubEffect.DOFade(1, 0.5f).OnComplete(() =>
         {
@@ -230,7 +232,13 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
 
         if(currentHp <= 0)
         {
-            Debug.Log("처디짐");
+            OnDie?.Invoke();
         }
+    }
+
+    public void PlayerDieAnimation()
+    {
+        Vector3 playerDieRotate = new Vector3(-60, 0, 0);
+        transform.DORotateQuaternion(Quaternion.Euler(playerDieRotate), 2f);
     }
 }
