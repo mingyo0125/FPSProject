@@ -4,6 +4,7 @@ using StarterAssets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -22,9 +23,9 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
 
     [Header("GunOffset")]
     [SerializeField]
-    private Vector3 _positionOffset = new Vector3(0.15f, -0.18f, 0.3f);
+    private Vector3 _riflePositionOffset = new Vector3(0.15f, -0.18f, 0.3f);
     [SerializeField]
-    private Vector3 _rotationOffset = new Vector3(5f, 180f, 0f);
+    private Vector3 _rifleRotationOffset = new Vector3(5f, 180f, 0f);
 
     [Space]
 
@@ -148,6 +149,8 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
     public IEnumerator Interaction()
     {
         Outline hitOutline = null;
+        EquipableObject curItem = null;
+
         while (true)
         {
             RaycastHit hit = CameraCenterRayHit(_interactionlayerMask, interactionRange);
@@ -158,13 +161,13 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
                     hitOutline.enabled = true;
                 }
 
-                if (_input.Interaction && hit.collider.TryGetComponent(out EquipableObject curItem))
+                if (_input.Interaction && hit.collider.TryGetComponent(out curItem))
                 {
                     if (curItem.TryGetComponent(out _curWeapon))
                     {
                         curItem._text.gameObject.SetActive(false);
 
-                        _curWeapon.SetUp(_rotationOffset, _positionOffset);
+                        _curWeapon.SetUp(_rifleRotationOffset, _riflePositionOffset);
 
                     }
                 }

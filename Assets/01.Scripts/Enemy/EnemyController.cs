@@ -97,6 +97,7 @@ public class EnemyController : PoolableMono, IDamageAble
         {
             _agentAnimator.OnAnimationEndTrigger += Die;
             _agentAnimator.SetDie();
+            _navMeshAgent.NavMeshAgent.isStopped = true;
             _collider.enabled = false;
         }
     }
