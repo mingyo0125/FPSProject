@@ -1,9 +1,11 @@
 using Cinemachine;
+using DG.Tweening;
 using StarterAssets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FirstPersonShooterController : MonoBehaviour, IDamageAble
 {
@@ -47,7 +49,8 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
     [SerializeField]
     private GameObject _testbullet;
 
-
+    [SerializeField]
+    Image _bloodHubEffect;
 
     private void Awake()
     {
@@ -216,6 +219,14 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
         currentHp -= damage;
 
         Debug.Log($"Player : {currentHp}");
+
+        //다트윈으로 슈슉하고 나왔다 사라지게
+
+        _bloodHubEffect.DOKill();
+        _bloodHubEffect.DOFade(1, 0.5f).OnComplete(() =>
+        {
+            _bloodHubEffect.DOFade(0, 0.5f);
+        });
 
         if(currentHp <= 0)
         {
