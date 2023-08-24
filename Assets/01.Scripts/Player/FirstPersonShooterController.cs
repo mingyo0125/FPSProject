@@ -53,6 +53,8 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
 
     [SerializeField]
     Image _bloodHubEffect;
+    [SerializeField]
+    Image _hitCrossHair;
 
     [SerializeField]
     UnityEvent OnDie;
@@ -207,6 +209,8 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
                     if(hit.transform.parent.parent.TryGetComponent(out EnemyController enemyController))
                     {
                         enemyController.OnDamage(_curWeapon.Damage);
+                        StopCoroutine(HitCrossHairCorou());
+                        StartCoroutine(HitCrossHairCorou());
                     }
 
                     _input.Shoot = false;
@@ -214,6 +218,13 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
             }
             yield return null;
         }
+    }
+
+    private IEnumerator HitCrossHairCorou()
+    {
+        _hitCrossHair.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        _hitCrossHair.gameObject.SetActive(false);
     }
 
     private void SetLayerWeight(Animator animtor, int layeridx, float weight)

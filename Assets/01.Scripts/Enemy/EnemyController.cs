@@ -35,8 +35,6 @@ public class EnemyController : PoolableMono, IDamageAble
     public UnityEvent onDieEvnet;
     private MeshCollider _collider;
 
-    Outline _outline;
-
     private float hp;
     public float HP => hp;
 
@@ -70,7 +68,6 @@ public class EnemyController : PoolableMono, IDamageAble
         states.ForEach(s => s.SetUp(transform)); //state -> transitions -> Decision 순서롤 셋업을 해준다.
 
         _collider = transform.Find("Visual/Polygonal Metalon").GetComponent<MeshCollider>();
-        _outline = transform.Find("Visual/Polygonal Metalon").GetComponent<Outline>();
     }
 
     public void ChangeState(CommonAIState nextstate)
@@ -90,9 +87,6 @@ public class EnemyController : PoolableMono, IDamageAble
     {
         hp -= damage;
 
-        StopCoroutine(HitEffect());
-        StartCoroutine(HitEffect());
-
         if(hp <= 0)
         {
             _agentAnimator.OnAnimationEndTrigger += Die;
@@ -100,13 +94,6 @@ public class EnemyController : PoolableMono, IDamageAble
             _navMeshAgent.NavMeshAgent.isStopped = true;
             _collider.enabled = false;
         }
-    }
-
-    private IEnumerator HitEffect()
-    {
-        _outline.enabled = true;
-        yield return new WaitForSeconds(0.2f);
-        _outline.enabled = false;
     }
 
     private void Die()

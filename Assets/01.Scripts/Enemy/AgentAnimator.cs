@@ -31,6 +31,7 @@ public class AgentAnimator : MonoBehaviour
     public void SetDie()
     {
         _animator.SetTrigger(DiedAniHash);
+        
     }
 
     #region 애니메이션 Action
