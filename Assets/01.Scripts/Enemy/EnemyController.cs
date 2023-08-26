@@ -87,6 +87,10 @@ public class EnemyController : PoolableMono, IDamageAble
     {
         hp -= damage;
 
+        PopUpText text = PoolManager.Instance.Pop("PopUpText") as PopUpText;
+        text.transform.SetParent(gameObject.transform);
+        text.TextSetUp(damage);
+
         if(hp <= 0)
         {
             _agentAnimator.OnAnimationEndTrigger += Die;
