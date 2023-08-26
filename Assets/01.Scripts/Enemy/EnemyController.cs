@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
 using UnityEngine.Events;
-using System;
 using System.ComponentModel;
 using UnityEngine.UI;
 
@@ -83,13 +82,17 @@ public class EnemyController : PoolableMono, IDamageAble
         _actionData.Init();
     }
 
-    public void OnDamage(float damage)
+    public void OnDamage(float _damage)
     {
+        int damage = Mathf.RoundToInt(Random.Range(_damage, 10));
+        
         hp -= damage;
 
         PopUpText text = PoolManager.Instance.Pop("PopUpText") as PopUpText;
         text.transform.SetParent(gameObject.transform);
         text.TextSetUp(damage);
+
+        Debug.Log(hp);
 
         if(hp <= 0)
         {

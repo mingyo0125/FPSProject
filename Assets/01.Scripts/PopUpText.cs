@@ -36,6 +36,7 @@ public class PopUpText : PoolableMono
 
     private void Update()
     {
-        _text.rectTransform.LookAt(GameManager.Instance.PlayerTrm);
+        _text.rectTransform.LookAt(GameManager.Instance.PlayerTrm.position);
+        _text.rectTransform.rotation *= Quaternion.Euler(new Vector3(0, 180f, 0));
     }
 }

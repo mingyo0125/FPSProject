@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   List:
   - name: Pistol
-    Damage: 1
+    Damage: 0
     ArmorCapacity: 10
     ReloadTime: 2
   - name: Rifle
-    Damage: 3
+    Damage: 5
     ArmorCapacity: 30
     ReloadTime: 5
