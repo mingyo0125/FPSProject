@@ -23,6 +23,7 @@ public class PopUpText : PoolableMono
     {
         Debug.Log("SetpUp");
         _text.SetText(damage.ToString());
+        _text.color = damage == 10 ? Color.red : Color.white;
         _text.transform.localPosition = Vector3.zero;
     }
 

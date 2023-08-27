@@ -18,6 +18,8 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
     private LayerMask _interactionlayerMask;
     [SerializeField]
     private LayerMask _shootlayerMask;
+    [SerializeField]
+    private AnimationCurve _shootAnimationCurve;
 
     [Space]
 
@@ -47,9 +49,6 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
 
     private float mapHp = 30;
     private float currentHp;
-
-    [SerializeField]
-    private GameObject _testbullet;
 
     [SerializeField]
     Image _bloodHubEffect;
@@ -118,7 +117,7 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
 
         if (Physics.Raycast(_cameraCenterRay, out hit,distance , layerMask))
         {
-            _testbullet.transform.position = hit.point;
+
         }
         return hit;
     }
@@ -194,6 +193,11 @@ public class FirstPersonShooterController : MonoBehaviour, IDamageAble
 
             if (_input.Shoot && _curWeapon != null)
             {
+                _curWeapon.transform.parent.transform.DOLocalMoveZ(0.35f, 0.2f).SetEase(_shootAnimationCurve).OnComplete(() =>
+                {
+                    _curWeapon.transform.parent.transform.DOLocalMoveZ(0.4f, 0.2f).SetEase(_shootAnimationCurve);
+                });
+
                 if (hit.collider != null)
                 {
                     _curWeapon.SpawnEffect();
