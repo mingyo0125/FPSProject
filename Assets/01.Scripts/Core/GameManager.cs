@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,12 +16,18 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Multiple GameManager is running! Check!");
         }
         Instance = this;
+
+        AddManager();
         MakePool();
+    }
+
+    private void AddManager()
+    {
+        PoolManager.Instance = new PoolManager(transform);
     }
 
     private void MakePool()
     {
-        PoolManager.Instance = new PoolManager(transform);
 
         _poolingListSO.List.ForEach(p => PoolManager.Instance.CreatePool(p.prefab, p.poolCount)); //리스트에 있는 모든
     }

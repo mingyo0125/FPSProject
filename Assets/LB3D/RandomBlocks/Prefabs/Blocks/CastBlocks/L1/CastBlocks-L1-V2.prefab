@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4774686164505907932}
   - component: {fileID: 6695558740917182494}
   - component: {fileID: 2271681497350233431}
+  - component: {fileID: -6960233358117418430}
   m_Layer: 0
   m_Name: CastBlocks-L1-V2
   m_TagString: Untagged
@@ -83,3 +84,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-6960233358117418430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4274296954087585791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2447b0efb5b8bd24aa6dd10c5dcd297c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
