@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6078469269935927624}
   - component: {fileID: -6518170989512999645}
   m_Layer: 8
-  m_Name: DefaultMap
+  m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

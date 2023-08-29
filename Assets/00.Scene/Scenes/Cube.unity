@@ -1298,7 +1298,7 @@ PrefabInstance:
     - target: {fileID: 4800038680450754147, guid: d1b328803fe7e9247b7e6ff93d5193ea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 2.59
       objectReference: {fileID: 0}
     - target: {fileID: 4800038680450754147, guid: d1b328803fe7e9247b7e6ff93d5193ea,
         type: 3}
@@ -1586,7 +1586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1295389762
 Transform:
   m_ObjectHideFlags: 0
@@ -2190,11 +2190,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Qube
-      objectReference: {fileID: 0}
-    - target: {fileID: 5310045641031245868, guid: 20d483f88403fc148846b0ef65711669,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5310045641031245871, guid: 20d483f88403fc148846b0ef65711669,
         type: 3}

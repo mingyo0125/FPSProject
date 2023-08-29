@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Maps : MonoBehaviour
+public class Plate : MonoBehaviour
 {
     [SerializeField]
     List<Material> _materialList = new List<Material>();

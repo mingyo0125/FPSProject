@@ -24,11 +24,11 @@ public class GameManager : MonoBehaviour
     private void AddManager()
     {
         PoolManager.Instance = new PoolManager(transform);
+        MapManager.Instance = GetComponent<MapManager>();
     }
 
     private void MakePool()
     {
-
         _poolingListSO.List.ForEach(p => PoolManager.Instance.CreatePool(p.prefab, p.poolCount)); //리스트에 있는 모든
     }
 
