@@ -892,7 +892,7 @@ GameObject:
   m_Layer: 0
   m_Name: Right
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1069,6 +1069,7 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 256
+  _cubeMap: {fileID: 1769254025}
 --- !u!114 &151422645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,7 +1094,7 @@ GameObject:
   m_Layer: 0
   m_Name: Back
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1124,7 +1125,7 @@ GameObject:
   m_Layer: 0
   m_Name: Front
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1275,7 +1276,7 @@ GameObject:
   m_Layer: 0
   m_Name: Down
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2056,6 +2057,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 151422643}
     m_Modifications:
+    - target: {fileID: 5310045639456719266, guid: 20d483f88403fc148846b0ef65711669,
+        type: 3}
+      propertyPath: m_Name
+      value: Down
+      objectReference: {fileID: 0}
     - target: {fileID: 5310045641031245868, guid: 20d483f88403fc148846b0ef65711669,
         type: 3}
       propertyPath: m_Name
@@ -4945,7 +4951,7 @@ GameObject:
   m_Layer: 0
   m_Name: Left
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5774,6 +5780,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1769254024}
+  - component: {fileID: 1769254025}
   m_Layer: 5
   m_Name: CubeMap
   m_TagString: Untagged
@@ -5807,6 +5814,25 @@ RectTransform:
   m_AnchoredPosition: {x: -663, y: 204}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1769254025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769254023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d852c70a804c543bf7fa0dbdb2862a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cubeState: {fileID: 151422645}
+  _left: {fileID: 1037182217}
+  _right: {fileID: 1323002765}
+  _front: {fileID: 291036184}
+  _back: {fileID: 1471216956}
+  _up: {fileID: 1657697950}
+  _down: {fileID: 2061010431}
 --- !u!1001 &1796332876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6121,7 +6147,7 @@ GameObject:
   m_Layer: 0
   m_Name: Up
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
